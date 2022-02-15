@@ -1,0 +1,78 @@
+
+@import 'header';
+@import 'vars';
+@import 'article';
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&family=Rajdhani:wght@300;400&family=Teko:wght@300;500&display=swap');
+
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+
+  &.mobile-menu-active {
+    overflow: hidden;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  margin-left: 0;
+  padding: 0;
+}
+
+.container-border {
+  border: 2px solid;
+  padding: 2rem;
+  border-image: linear-gradient(to right, $pink, $blue) 1;
+}
+
+
+.test {
+  font-family: 'Oswald', sans-serif;
+}
+
+.test2 {
+  font-family: 'Bebas Neue', cursive;
+}
+
+.test3 {
+  font-family: 'Teko', sans-serif;
+}
+p{
+  font-family: 'Rajdhani', sans-serif;
+}
+
+#header-placeholder {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+
+  body.no-scroll & {
+    display: none;
+  }
+}

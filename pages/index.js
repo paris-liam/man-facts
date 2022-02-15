@@ -2,14 +2,12 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getAllPostData } from '../lib/posts'
-import { getAllAuthorData } from '../lib/authors';
-
-const generateLink = (title) => title.toLowerCase().split(' ').slice(0,4).join('-');
+import { getAllAuthorData, generateLink } from '../lib/authors';
+import Header from '../components/header';
 
 export default function Home({ allPostsData, allAuthorsData }) {
   const allPosts = allPostsData.items;
   const allAuthors = allAuthorsData.items;
-  console.warn(allAuthors);
   return (
     <Layout home>
       <Head>
@@ -35,6 +33,7 @@ export default function Home({ allPostsData, allAuthorsData }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Authors</h2>
         <ul className={utilStyles.list}>
+        <i className="fas fa-user"></i>
           {allAuthors.map(({sys,fields}) => (
 
             <a href={'/authors/'+generateLink(fields.name)}><li className={utilStyles.listItem} key={sys.id}>

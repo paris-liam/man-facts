@@ -1,16 +1,33 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import Header from './header'
+import { useState } from 'react/cjs/react.development'
+import { useEffect } from 'react'
 
-const name = '[Your Name]'
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, home }) {
+  const [headerHeight, setHeaderHeight] = useState(100);
+  useEffect(() => {
+    document.querySelector('body').classList += 'no-scroll';
+    //TODO grab header height from ref and set
+    const checkScroll = () => {
+      !window.scrollY || window.scrollY === 0 ? document.querySelector('body').classList += 'no-scroll' : document.querySelector('body').classList = '';
+    };
+
+    window.addEventListener("scroll", checkScroll);
+
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, []);
   return (
+    <>
+    <div id='header-placeholder' style={{'height': `${headerHeight}px`}}></div>
+    <Header></Header>
     <div className={styles.container}>
       <Head>
+        <link href="/styles/all.css" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
@@ -25,14 +42,9 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-        {home ? (
-          <></>
-        ) : (
-          <></>
-        )}
-      </header>
-      <main>{children}</main>
+      
+      <main className='container-border'>{children}</main>
+     
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
@@ -41,5 +53,6 @@ export default function Layout({ children, home }) {
         </div>
       )}
     </div>
+    </>
   )
 }

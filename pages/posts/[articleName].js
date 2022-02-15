@@ -24,13 +24,14 @@ export default function Post({ postData }) {
     date = new Date(data.dateOfPublication);
     imgSrc = data.titleImage.fields.file.url;
     author = data.author.fields.name
-    console.warn(postData);
   }
   return (
   <Layout> 
     <img src={imgSrc}/>
-    <h1>{title}</h1>
-    <h2>{date.toLocaleString()} by <a href={formatAuthorLink(author)}>{author}</a></h2>
+    <h1 className='test'>{title}</h1>
+    <h1 className='test2'>{title}</h1>
+    <h1 className='test3'>{title}</h1>
+    <h4>{date.toLocaleString()?.split(',')[0]} by <a className='author-link' href={formatAuthorLink(author)}>{author}</a></h4>
 
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
   </Layout>)

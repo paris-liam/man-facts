@@ -1,0 +1,16 @@
+$xs: 0;
+$sm:576px;
+$md:768px;
+$lg:992px;
+$xl:1200px;
+$pink: rgba(246,149,195,1);
+$blue: rgba(0,192,255,1);
+
+
+
+
+@mixin breakpoint($size) {
+  @media (min-width: #{$size}){
+    @content;
+  }
+}
