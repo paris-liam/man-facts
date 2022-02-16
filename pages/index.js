@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getAllPostData } from '../lib/posts'
-import { getAllAuthorData, generateLink } from '../lib/authors';
+import { getAllPostData, formatLink, createTagList } from '../lib/posts'
+import { getAllAuthorData } from '../lib/authors';
+import Header from '../components/header';
 
-export default function Home({ allPostsData, allAuthorsData }) {
+export default function Home({ allPostsData, allAuthorsData, tagList }) {
   const allPosts = allPostsData.items;
   const allAuthors = allAuthorsData.items;
   return (
@@ -12,14 +13,15 @@ export default function Home({ allPostsData, allAuthorsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <Header tagList={tagList}></Header>
+      <div className='container-border'><section className={utilStyles.headingMd}>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPosts.map(({sys,fields}) => (
 
-            <a href={'/posts/'+generateLink(fields.title)}><li className={utilStyles.listItem} key={sys.id}>
+            <a href={'/posts/'+formatLink(fields.title)}><li className={utilStyles.listItem} key={sys.id}>
               {fields.title}
               <br />
               {}
@@ -35,7 +37,7 @@ export default function Home({ allPostsData, allAuthorsData }) {
         <i className="fas fa-user"></i>
           {allAuthors.map(({sys,fields}) => (
 
-            <a href={'/authors/'+generateLink(fields.name)}><li className={utilStyles.listItem} key={sys.id}>
+            <a href={'/authors/'+formatLink(fields.name)}><li className={utilStyles.listItem} key={sys.id}>
               {fields.name}
               <br />
               {}
@@ -44,7 +46,7 @@ export default function Home({ allPostsData, allAuthorsData }) {
             </li></a>
           ))}
         </ul>
-      </section>
+      </section></div>
     </Layout>
   )
 }
@@ -52,10 +54,12 @@ export default function Home({ allPostsData, allAuthorsData }) {
 export async function getStaticProps() {
   const allPostsData = await getAllPostData();
   const allAuthorsData = await getAllAuthorData();
+  const tagList = await createTagList();
   return {
     props: {
       allPostsData,
-      allAuthorsData
+      allAuthorsData,
+      tagList
     }
   }
 }

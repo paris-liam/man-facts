@@ -1,17 +1,21 @@
 import Layout from '../../components/layout'
 import { generateAuthorPaths, getAuthorData } from '../../lib/authors'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import Header from '../../components/header';
 
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
+  const tagList = await createTagList();
+
   return {
     props: {
-      authorData
+      authorData,
+      tagList
     }
   }
 }
 
-export default function Author({ authorData }) {
+export default function Author({ authorData, tagList }) {
   let name, imgSrc, body = '';
   let articleList = [];
   if(authorData && authorData.res) {
@@ -23,7 +27,8 @@ export default function Author({ authorData }) {
   }
   return (
   <Layout> 
-    <img src={imgSrc}/>
+    <Header tagList={tagList}></Header>
+    <div className='container-border'><img src={imgSrc}/>
     <h1>{name}</h1>
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
     <div>
@@ -37,7 +42,7 @@ export default function Author({ authorData }) {
           </li>)
         })}
       </ul>    
-    </div>
+    </div></div>
   </Layout>)
 }
 export async function getStaticPaths() {

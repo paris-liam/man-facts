@@ -29,12 +29,13 @@ body {
 }
 
 a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  color: $blue;
+  font-family: 'Teko', sans-serif;
+  text-transform: capitalize;
+  &:hover {
+      text-decoration: underline;
+      text-decoration-color: white;
+  }
 }
 
 img {
@@ -49,25 +50,20 @@ ul {
 
 .container-border {
   border: 2px solid;
-  padding: 2rem;
   border-image: linear-gradient(to right, $pink, $blue) 1;
+  max-width: 36rem;
+  padding: 1rem;
+  margin: 3rem auto 6rem;
 }
 
 
-.test {
-  font-family: 'Oswald', sans-serif;
-}
-
-.test2 {
-  font-family: 'Bebas Neue', cursive;
-}
-
-.test3 {
+h1,h2,h3,h4 {
   font-family: 'Teko', sans-serif;
 }
-p{
+p {
   font-family: 'Rajdhani', sans-serif;
 }
+
 
 #header-placeholder {
   background-color: black;

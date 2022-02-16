@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
-import { createTagList, getAllPostData } from "../lib/posts";
 
-export default function Header({tagsList}) {
+export default function Header({tagList}) {
   const [navActive, setNav] = useState(false);
   useEffect(() => {
     if(navActive)
@@ -27,30 +26,23 @@ export default function Header({tagsList}) {
                 </button>
               </div>
             </div>
-              <ul className="menu-container">
-                <li><a href="#about">About</a></li>
-                <li><a href="#exp">Resume</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <div className="menu-container">
+              <ul className="section-links">
+                {tagList.map((tag) => (
+                  <li key={tag}><a href={tag}>{tag}</a></li>
+                ))}
                 <li><a href="#about">About</a></li>
                 <li><a href="#exp">Brave Patriots</a></li>
                 <li><a href="#exp">Write for us</a></li>
+              </ul>
+              <ul className="social-links">
                 <li><i className="fb"></i></li>
                 <li><i className="twitter"></i></li>
                 <li><i className="ig"></i></li>
                 <button>search</button>
               </ul>
+            </div>
           </nav>
       </header>
     </>);
-}
-
-export async function getStaticProps() {
-  const tagsList = await getAllPostData();
-  return {
-    props: {
-      tagsList: tagsList
-    }
-  }
 }
