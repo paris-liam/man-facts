@@ -2,6 +2,7 @@ import Layout from '../../components/layout'
 import { generateAuthorPaths, getAuthorData } from '../../lib/authors'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Header from '../../components/header';
+import { createTagList } from '../../lib/posts';
 
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
