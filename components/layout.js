@@ -27,7 +27,6 @@ export default function Layout({ children, home }) {
     <Header></Header>
     <div className={styles.container}>
       <Head>
-        <link href="/styles/all.css" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"

@@ -4,7 +4,6 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
-  console.warn(authorData);
   return {
     props: {
       authorData
@@ -20,7 +19,6 @@ export default function Author({ authorData }) {
     name = data.name;
     body = data.aboutSection;
     imgSrc = data.headshot?.fields?.file.url;
-    console.warn(authorData.res.articleList);
     articleList = authorData.res.articleList;
   }
   return (

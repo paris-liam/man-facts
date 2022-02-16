@@ -17,7 +17,7 @@ const formatAuthorLink = (name) => {
 
 export default function Post({ postData }) {
   let title, imgSrc, body, author, date = '';
-  if(postData && postData.res) {
+  if(postData.res) {
     let data = postData.res.fields;
     title = data.title;
     body = data.body;
@@ -32,7 +32,6 @@ export default function Post({ postData }) {
     <h1 className='test2'>{title}</h1>
     <h1 className='test3'>{title}</h1>
     <h4>{date.toLocaleString()?.split(',')[0]} by <a className='author-link' href={formatAuthorLink(author)}>{author}</a></h4>
-
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
   </Layout>)
 }

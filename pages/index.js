@@ -3,7 +3,6 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getAllPostData } from '../lib/posts'
 import { getAllAuthorData, generateLink } from '../lib/authors';
-import Header from '../components/header';
 
 export default function Home({ allPostsData, allAuthorsData }) {
   const allPosts = allPostsData.items;

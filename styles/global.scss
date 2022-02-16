@@ -3,7 +3,9 @@
 @import 'vars';
 @import 'article';
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&family=Rajdhani:wght@300;400&family=Teko:wght@300;500&display=swap');
-
+@import "./fontawesome/scss/fontawesome.scss";
+@import "./fontawesome/scss/solid.scss";
+@import "./fontawesome/scss/brands.scss";
 
 
 html,
@@ -75,4 +77,16 @@ p{
   body.no-scroll & {
     display: none;
   }
+}
+
+.twitter {
+  @include fa-icon-brands($fa-var-twitter);
+}
+
+.fb {
+  @include fa-icon-brands($fa-var-facebook);
+}
+
+.ig {
+  @include fa-icon-brands($fa-var-instagram);
 }
