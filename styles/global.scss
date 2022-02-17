@@ -2,12 +2,10 @@
 @import 'header';
 @import 'vars';
 @import 'article';
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&family=Rajdhani:wght@300;400&family=Teko:wght@300;500&display=swap');
 @import "./fontawesome/scss/fontawesome.scss";
 @import "./fontawesome/scss/solid.scss";
 @import "./fontawesome/scss/brands.scss";
-
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@100;200;300;400;500&family=Oswald&family=Rajdhani:wght@300;400&family=Teko:wght@300;500&display=swap');
 html,
 body {
   padding: 0;
@@ -61,7 +59,8 @@ h1,h2,h3,h4 {
   font-family: 'Teko', sans-serif;
 }
 p {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'montserrat', sans-serif;
+  font-weight: 500;
 }
 
 
