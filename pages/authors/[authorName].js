@@ -19,13 +19,13 @@ export async function getStaticProps({ params }) {
 export default function Author({ authorData, tagList }) {
   let name, imgSrc, body = '';
   let articleList = [];
-  if(authorData && authorData.res) {
+  /*if(authorData && authorData.res) {
     let data = authorData.res.fields;
     name = data.name;
     body = data.aboutSection;
     imgSrc = data.headshot?.fields?.file.url;
     articleList = authorData.res.articleList;
-  }
+  }*/
   return (
   <Layout> 
     <Header tagList={tagList}></Header>

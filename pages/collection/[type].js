@@ -3,6 +3,7 @@ import { createTagList, generatePostPaths, getAllPostData, getPostData } from '.
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Header from '../../components/header';
 import { getAllAuthorData } from '../../lib/authors';
+import PostList from '../../components/postlist';
 
 export async function getServerSideProps({query}) {  
   const postData = await getAllPostData();
@@ -33,7 +34,7 @@ export default function Post({ postData, authorData, tagList, type, q}) {
   let searchType = ''
   if(type === 'authors') {
     searchType = 'Brave Patriots';
-    results = authorData.items; //TODO create standard format 
+    results = formatAuthorsForPostList(authorData.items); //TODO create standard format 
   }
   else if(type === 'tags') {
     searchType = q;
@@ -46,11 +47,7 @@ export default function Post({ postData, authorData, tagList, type, q}) {
     <Header tagList={tagList}></Header>
     <div className='container-border'>
     <h1>{searchType}</h1>
-    <ul className='results-container'>
-      {results.map((result) => {
-        return <li>{result.title}</li> //TODO: format results 
-      })}
-    </ul>
+    <PostList posts={results}></PostList>
     </div>
     </Layout>)
 }

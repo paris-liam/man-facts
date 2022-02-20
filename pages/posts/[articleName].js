@@ -19,22 +19,12 @@ const formatAuthorLink = (name) => {
 }
 
 export default function Post({ postData, tagList }) {
-  let title, imgSrc, body, author, date = '';
-  if(postData && postData.res) {
-    let data = postData.res.fields;
-    title = data.title;
-    body = data.body;
-    date = new Date(data.dateOfPublication);
-    imgSrc = data.titleImage.fields.file.url;
-    author = data.author.fields.name
-  }
-  return (
-  <Layout> 
+  return (<Layout> 
     <Header tagList={tagList}></Header>
-    <div className='container-border'><img src={imgSrc}/>
-    <h1>{title}</h1>
-    <h4>{date.toLocaleString()?.split(',')[0]} by <a className='author-link' href={formatAuthorLink(author)}>{author}</a></h4>
-    <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
+    <div className='container-border'><img src={postData.image}/>
+    <h1>{postData.title}</h1>
+    <h4>{postData.date ? postData.data.toLocaleString()?.split(',')[0] : ''} by <a className='author-link' href={formatAuthorLink(post.author)}>{post.author}</a></h4>
+    <div dangerouslySetInnerHTML={{__html: documentToHtmlString(post.body)}}></div>
     </div></Layout>)
 }
 
