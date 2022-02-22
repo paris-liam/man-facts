@@ -2,7 +2,7 @@ import Layout from '../../components/layout'
 import { generateAuthorPaths, getAuthorData } from '../../lib/authors'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Header from '../../components/header';
-import { createTagList } from '../../lib/posts';
+import { createTagList } from '../../lib/tags';
 
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
@@ -17,19 +17,12 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Author({ authorData, tagList }) {
-  let name, imgSrc, body = '';
-  let articleList = [];
-  /*if(authorData && authorData.res) {
-    let data = authorData.res.fields;
-    name = data.name;
-    body = data.aboutSection;
-    imgSrc = data.headshot?.fields?.file.url;
-    articleList = authorData.res.articleList;
-  }*/
+  console.warn(authorData);
+  let {name, image, body, articleList }= authorData;
   return (
   <Layout> 
     <Header tagList={tagList}></Header>
-    <div className='container-border'><img src={imgSrc}/>
+    <div className='container-border'><img src={image}/>
     <h1>{name}</h1>
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
     <div>

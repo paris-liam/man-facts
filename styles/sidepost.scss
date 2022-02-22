@@ -1,0 +1,12 @@
+.side-post-container {
+    position: fixed;
+    background-color: red;
+    width: 20%;
+    right: 0;
+    height: 100vh;
+    display: none;
+
+    @include breakpoint($header-desktop-breakpoint) {
+        display: block;
+      }
+  }

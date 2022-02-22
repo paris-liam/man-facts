@@ -1,9 +1,9 @@
 import Layout from '../../components/layout'
-import { createTagList, generatePostPaths, getAllPostData, getPostData } from '../../lib/posts'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Header from '../../components/header';
 import { getAllAuthorData } from '../../lib/authors';
 import PostList from '../../components/postlist';
+import { createTagList } from '../../lib/tags';
 
 export async function getServerSideProps({query}) {  
   const postData = await getAllPostData();

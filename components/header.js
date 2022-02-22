@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
 import Router from 'next/router'
-
-export default function Header({tagList = []}) {
+import SideList from "./sidelist";
+export default function Header({tagList = [], sidePosts=[]}) {
  //TODO: create and style search button
 
   const [searchInputActive, toggleSearchInput] = useState(false);
@@ -67,5 +67,8 @@ export default function Header({tagList = []}) {
             </div>
           </nav>
       </header>
+      { sidePosts.length > 0 && <div className="side-post-container">
+        <SideList posts={sidePosts}></SideList>
+      </div>}
     </>);
 }

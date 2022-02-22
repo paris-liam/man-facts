@@ -1,9 +1,9 @@
+import { formatLink } from "../lib/utils";
 
 
 export default function PostList({posts}) {
 
     posts.forEach((post, index) => {
-        console.warn(post.body);
         let summary = '';
         let endOfBody = false
         const MAX_LENGTH = 150;
@@ -31,16 +31,16 @@ export default function PostList({posts}) {
         summary = '';
     })
 
-    return (<ul className='post-list'>
+    return (<ul className='post-list container-border '>
     {posts.map((post) => {
         return (
-        <li className='post-list-item'>
+        <li className='post-list-item'><a href={'/posts/'+formatLink(post.title)}>
             {post.image ? <img className='post-list-item-image' src={post.image}/> : ''}
             <div className="post-list-item-text-container">
                 <h2 className="post-list-item-text-title">{post.title}</h2>
                 <h3 className="post-list-item-text-date">{post.date}</h3>
                 <p className="post-list-item-text-body">{post.summary}...</p>
-            </div>
+            </div></a>
         </li>
     )})}
 </ul>);

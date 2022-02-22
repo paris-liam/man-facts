@@ -3,6 +3,9 @@
 @import 'vars';
 @import 'article';
 @import 'postlist';
+@import 'carousel';
+@import 'carousel-thumb';
+@import 'sidepost';
 @import "./fontawesome/scss/fontawesome.scss";
 @import "./fontawesome/scss/solid.scss";
 @import "./fontawesome/scss/brands.scss";
@@ -85,4 +88,15 @@ p {
 
 .ig {
   @include fa-icon-brands($fa-var-instagram);
+}
+
+.embla-title {
+  position: absolute;
+  z-index: 10;
+  color: white;
+  font-weight: 1.5rem;
+  text-align: center;
+  bottom: 0;
+  background-color: black;
+  width: 100%;
 }

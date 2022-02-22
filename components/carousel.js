@@ -1,3 +1,7 @@
-export default function Carousel({posts}) {
-    return (<h1>carousel</h1>)
+import React, { useEffect } from 'react'
+import EmblaCarousel from './embla/EmblaCarousel'
+export default function Carousel({ posts }) {
+    return (
+        <EmblaCarousel slides={posts}></EmblaCarousel>
+    )
 }

@@ -1,4 +1,20 @@
 .post-list {
     list-style: none;
     margin-right: none;
+    max-width: 70vw;
+    border: 2px solid;
+    border-image: linear-gradient(to right, $pink, $blue) 1;
+    padding: 1rem;
+    margin: 3rem auto 6rem;
+}
+
+.post-list-item-image {
+    display: inline-block;
+    width: 50%;
+}
+
+.post-list-item-text-container {
+    display: inline-block;
+    flex-direction: column;
+    width: 45%;
 }
