@@ -10,6 +10,7 @@ header {
   padding: .5rem 0;
   background: black;
   z-index: 3;
+  height: 170px;
 
   body.no-scroll & {
     position: relative;
@@ -20,6 +21,7 @@ nav {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  background-color: black;
   @media(min-width: $header-desktop-breakpoint) {
     justify-content: flex-start;
   }
@@ -32,7 +34,7 @@ nav {
   align-items: center;
 
   @media(min-width: $header-desktop-breakpoint) {
-    width: 15%;
+    width: 20%;
   }
 }
 
@@ -42,7 +44,7 @@ nav {
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;
-  max-width: 250px;
+  max-width: 350px;
 }
 
 .menu-container {
@@ -64,7 +66,7 @@ nav {
   }
 
   body.mobile-menu-active & { 
-    height: calc(100vh - 200px);
+    height: calc(100vh - 100px);
   }
 
   ul {
@@ -77,6 +79,14 @@ nav {
     font-size: 1.5rem;
   }
 
+  ul.social-links {
+    flex-direction: row;
+
+    * {
+      margin-right: .25rem;
+    }
+  }
+
   @media(min-width: $header-desktop-breakpoint) {
     height: auto;
     overflow: auto;
@@ -87,7 +97,7 @@ nav {
       margin-left: 0;
     }
     ul.section-links {
-      width: 80%;
+      width: 60%;
       font-size: 1.25rem;
       li {
         margin-right: .5rem;
@@ -95,11 +105,8 @@ nav {
       }
     }
     ul.social-links {
-      width: 20%;
+      width: 10%;
       justify-content: flex-end;
-      * {
-        margin-right: .25rem;
-      }
     }
   }
 }
@@ -174,5 +181,38 @@ nav {
     margin-top: 4px;
     background-color: white;
     transition: all .25s;
+  }
+}
+
+.search-trigger {
+  vertical-align: text-top;
+  margin: auto;
+  text-align: center;
+  background-color: black;
+  color: $blue;
+  outline: none;
+  border: none;
+  margin: 0;
+  font-size: 1rem;
+
+  i {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+.search-input-container {
+  height: 0;
+  display: none;
+  @include breakpoint($header-desktop-breakpoint) {
+    position: fixed;
+    top: 70px;
+    right: 50px;
+    z-index: 5;
+  }
+
+  &.search-input-active {
+    display: block;
+    height: auto;
   }
 }

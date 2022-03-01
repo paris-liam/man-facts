@@ -1,20 +1,52 @@
 .post-list {
     list-style: none;
     margin-right: none;
-    max-width: 70vw;
+    width: 85%;
+    max-width: 800px;
     border: 2px solid;
     border-image: linear-gradient(to right, $pink, $blue) 1;
     padding: 1rem;
     margin: 3rem auto 6rem;
 }
 
+.post-list-item > a {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    max-width: 800px;
+
+    &:hover {
+        text-decoration: none;
+        .post-list-item-text-title {
+            text-decoration: underline;
+            text-decoration-color: white;
+        }        
+    }
+    border-bottom: 1px dotted white;
+}
+
 .post-list-item-image {
     display: inline-block;
     width: 50%;
+    margin-right: 1rem;
 }
 
 .post-list-item-text-container {
     display: inline-block;
     flex-direction: column;
     width: 45%;
+}
+
+.post-list-item-text-title, .post-list-item-text-date, .post-list-item-text-body {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+
+.post-list-item-text-body {
+    font-size: .75rem;
+    color: white;
 }

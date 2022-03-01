@@ -34,9 +34,11 @@ a {
   color: $blue;
   font-family: 'Teko', sans-serif;
   text-transform: capitalize;
+  text-decoration: none;
   &:hover {
       text-decoration: underline;
       text-decoration-color: white;
+      color: white;
   }
 }
 
@@ -71,7 +73,7 @@ p {
 #header-placeholder {
   background-color: black;
   width: 100%;
-  height: 100px;
+  height: 170px;
 
   body.no-scroll & {
     display: none;
@@ -90,13 +92,42 @@ p {
   @include fa-icon-brands($fa-var-instagram);
 }
 
-.embla-title {
+.swiper-container {
+  width: 80%;
+  height: 50%;
+  margin: auto;
+  position: relative;
+}
+
+.swiper-slide-title {
   position: absolute;
-  z-index: 10;
-  color: white;
-  font-weight: 1.5rem;
-  text-align: center;
-  bottom: 0;
+  bottom: 10%;
+  left: 20%;
+  width: 500px;
+  z-index: 3;
+}
+
+.swiper-slide-image {
+  width: auto;
+  height: 400px;
+  margin: auto;
+}
+
+.about-links {
   background-color: black;
-  width: 100%;
+  list-style: none;
+  padding-left: 20px;
+  display: inline-block;
+  width: 20%;
+  position: fixed;
+  left: 0;
+  top: 100px;
+  font-size: 1.5rem;
+}
+
+
+.main-container {
+  width: 60%;
+  display: block;
+  margin: auto;
 }

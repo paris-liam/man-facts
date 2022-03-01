@@ -44,29 +44,29 @@ export default function Header({tagList = [], sidePosts=[]}) {
                 {tagList.map((tag) => (
                   <li key={tag}><a href={`/collection/tags?q=${tag}`}>{tag}</a></li>
                 ))}
-                <li><a href="/">About</a></li>
-                <li><a href="/collection/authors">Brave Patriots</a></li>
-                <li><a href="/">Write for us</a></li>
               </ul>
               <ul className="social-links">
                 <li><a href="https://www.facebook.com/ManFacts7/" target="_blank"><i className="fb"></i></a></li>
                 <li><a href="https://twitter.com/ManFacts7" target="_blank"><i className="twitter"></i></a></li>
                 <li><a href="https://www.instagram.com/therealmanfacts/" target="_blank"><i className="ig"></i></a></li>
-              </ul>
-              <div className="search-container">
-                  <button className='search-trigger' onClick={() => {toggleSearchInput(!searchInputActive)}}>
+                <li>                  <button className='search-trigger' onClick={() => {toggleSearchInput(!searchInputActive)}}>
                     {!searchInputActive ? <i className='fa fa-search'></i> : <i className='fa fa-close'></i> }
-                  </button>
-                  <div className={`search-input-container ` + searchInputActive ? 'search-input-active' : ''}>
-                    <input type='text' />
-                    <button onClick={() => { performSearch() }}>
-                      <i className='fa fa-search'></i>
-                    </button>
-                  </div>
+                  </button></li>
+              </ul>
+              <div className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`}>
+                <input type='text' />
+                <button onClick={() => { performSearch() }}>
+                  <i className='fa fa-search'></i>
+                </button>
               </div>
             </div>
           </nav>
       </header>
+      <div className='about-links-container'><ul className='about-links'>
+        <li><a href="/">About</a></li>
+        <li><a href="/collection/authors">Brave Patriots</a></li>
+        <li><a href="/">Write for us</a></li>
+      </ul></div>
       { sidePosts.length > 0 && <div className="side-post-container">
         <SideList posts={sidePosts}></SideList>
       </div>}

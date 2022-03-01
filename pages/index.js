@@ -6,23 +6,21 @@ import { getAllAuthorData } from '../lib/authors';
 import { getAllPostData } from '../lib/posts';
 import Header from '../components/header';
 import Carousel from '../components/carousel';
-import CarouselThumb from '../components/carouselThumb';
-import SideList from '../components/sidelist';
 import PostList from '../components/postlist';
 
 export default function Home({ allPostsData, allAuthorsData, tagList }) {
   const allPosts = allPostsData;
-  const allAuthors = allAuthorsData;
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <Header tagList={tagList}></Header>
-      <Carousel posts={allPosts.slice(0,3)}></Carousel>
-      <CarouselThumb posts={allPosts}></CarouselThumb>
+      <Header tagList={tagList} sidePosts={allPosts.slice(0,5)}></Header>
+      <div className="main-container">
+      <Carousel posts={allPosts}></Carousel>
       <h1>PostList</h1>
       <PostList posts={allPosts}></PostList>
+      </div>
     </Layout>
   )
 }

@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
     document.querySelector('body').classList += 'no-scroll';
-    setHeaderHeight(200);
+    setHeaderHeight(150);
     const checkScroll = () => {
       !window.scrollY || window.scrollY === 0 ? document.querySelector('body').classList += 'no-scroll' : document.querySelector('body').classList = '';
     };
