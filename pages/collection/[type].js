@@ -43,11 +43,8 @@ export default function Post({ postData, authorData, tagList, type, q}) {
     searchType = `Search Results for: ${q}`; 
   }
   return (
-  <Layout> 
-    <Header tagList={tagList}></Header>
-    <div className='container-border'>
+  <Layout tagList={tagList}> 
     <h1>{searchType}</h1>
     <PostList posts={results}></PostList>
-    </div>
     </Layout>)
 }

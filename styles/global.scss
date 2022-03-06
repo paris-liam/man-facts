@@ -3,24 +3,24 @@
 @import 'vars';
 @import 'article';
 @import 'postlist';
-@import 'carousel';
-@import 'carousel-thumb';
-@import 'sidepost';
+@import 'sidelist';
+@import 'layout';
 @import "./fontawesome/scss/fontawesome.scss";
 @import "./fontawesome/scss/solid.scss";
 @import "./fontawesome/scss/brands.scss";
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@100;200;300;400;500&family=Oswald&family=Rajdhani:wght@300;400&family=Teko:wght@300;500&display=swap');
+
 html,
 body {
   padding: 0;
-  margin: 0;
+  margin: 0 .5rem;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
-  font-size: 18px;
+  font-size: 16px;
   background-color: black;
   color: white;
-
+  
   &.mobile-menu-active {
     overflow: hidden;
   }
@@ -50,34 +50,42 @@ img {
 ul {
   margin-left: 0;
   padding: 0;
+  list-style: none;
 }
 
-.container-border {
-  border: 2px solid;
-  border-image: linear-gradient(to right, $pink, $blue) 1;
-  max-width: 36rem;
-  padding: 1rem;
-  margin: 3rem auto 6rem;
-}
-
-
-h1,h2,h3,h4 {
+h1,h2,h3,h4,h5,h6 {
   font-family: 'Teko', sans-serif;
 }
+
 p {
   font-family: 'montserrat', sans-serif;
   font-weight: 500;
 }
 
+h1, h2, h3, h4, p, a {
+  font-size: clamp(var(--min), var(--val), var(--max));
+}
 
-#header-placeholder {
-  background-color: black;
-  width: 100%;
-  height: 170px;
-
-  body.no-scroll & {
-    display: none;
-  }
+/* Font size variables */
+h1 {
+  --min: 2rem; /* minimum value */
+  --val: 5vw; /* preferred value = 5% viewport width */
+  --max: 3rem; /* maximum value */
+}
+h2 {
+  --min: 1.5rem;   /* minimum value */
+  --val: 4vw;     /* preferred value = 4% viewport width */
+  --max: 2.25rem;  /* maximum value */
+}
+h3,h4,h5,h6 {
+  --min: 1.25rem;   /* minimum value */
+  --val: 3vw;     /* preferred value = 4% viewport width */
+  --max: 1.5rem;  /* maximum value */
+}
+p {
+  --min: .75rem;   /* minimum value */
+  --val: 1.5vw; /* preferred value = 2.5% viewport width */
+  --max: 1.5rem; /* maximum value */
 }
 
 .twitter {
@@ -90,44 +98,4 @@ p {
 
 .ig {
   @include fa-icon-brands($fa-var-instagram);
-}
-
-.swiper-container {
-  width: 80%;
-  height: 50%;
-  margin: auto;
-  position: relative;
-}
-
-.swiper-slide-title {
-  position: absolute;
-  bottom: 10%;
-  left: 20%;
-  width: 500px;
-  z-index: 3;
-}
-
-.swiper-slide-image {
-  width: auto;
-  height: 400px;
-  margin: auto;
-}
-
-.about-links {
-  background-color: black;
-  list-style: none;
-  padding-left: 20px;
-  display: inline-block;
-  width: 20%;
-  position: fixed;
-  left: 0;
-  top: 100px;
-  font-size: 1.5rem;
-}
-
-
-.main-container {
-  width: 60%;
-  display: block;
-  margin: auto;
 }

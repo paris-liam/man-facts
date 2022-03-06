@@ -25,12 +25,11 @@ const formatAuthorLink = (name) => {
 export default function Post({ postData, tagList, sidePosts }) {
   const {image, title, date, author, body} = postData;
   return (<Layout> 
-    <Header tagList={tagList} sidePosts={sidePosts}></Header>
     <div className='container-border'><img src={image}/>    
     <h1>{title}</h1>
     <h4>{date ? date.toLocaleString()?.split(',')[0] : ''} by <a className='author-link' href={formatAuthorLink(author)}>{author}</a></h4>
-    <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
-  </div></Layout>)
+    <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div></div>
+  </Layout>)
 }
 
 export async function getStaticPaths() {

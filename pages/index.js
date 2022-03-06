@@ -1,38 +1,26 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
+import Layout from '../components/layout'
 import { createTagList } from '../lib/tags'
-import { getAllAuthorData } from '../lib/authors';
-import { getAllPostData } from '../lib/posts';
-import Header from '../components/header';
+import { generateHomePosts } from '../lib/posts';
 import Carousel from '../components/carousel';
 import PostList from '../components/postlist';
 
-export default function Home({ allPostsData, allAuthorsData, tagList }) {
-  const allPosts = allPostsData;
+export default function Home({ homePosts, tagList }) {
+  const {topPosts, recentPosts, trendingPosts, popularPosts} = homePosts;
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <Header tagList={tagList} sidePosts={allPosts.slice(0,5)}></Header>
-      <div className="main-container">
-      <Carousel posts={allPosts}></Carousel>
-      <h1>PostList</h1>
-      <PostList posts={allPosts}></PostList>
-      </div>
+    <Layout tagList={tagList} sidePosts={recentPosts.slice(0,5)}>
+        {/*<Carousel posts={allPosts}></Carousel>*/}
+        <h1>PostList</h1>
+        <PostList posts={topPosts}></PostList>
     </Layout>
   )
 }
 
 export async function getStaticProps() {
-  const allPostsData = await getAllPostData();
-  const allAuthorsData = await getAllAuthorData();
+  const homePosts = await generateHomePosts(); 
   const tagList = await createTagList();
   return {
     props: {
-      allPostsData,
-      allAuthorsData,
+      homePosts,
       tagList
     }
   }

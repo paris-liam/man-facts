@@ -1,29 +1,25 @@
 @import 'vars.scss';
 
-$header-desktop-breakpoint: 850px;
-
 header {
   position: fixed;
   top: 0;
   left: 0;
+  height: auto;
   width: 100%;
   padding: .5rem 0;
   background: black;
   z-index: 3;
-  height: 170px;
-
+  display: grid;
+  grid-template-columns: 100%;
+  padding: .5rem 1rem;
+  align-items: flex-end;
   body.no-scroll & {
     position: relative;
+    padding: .5rem 0;
   }
-}
 
-nav {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  background-color: black;
-  @media(min-width: $header-desktop-breakpoint) {
-    justify-content: flex-start;
+  @media(min-width: $desktop-breakpoint) {
+    grid-template-columns: 20% 80%;
   }
 }
 
@@ -32,90 +28,155 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media(min-width: $header-desktop-breakpoint) {
-    width: 20%;
-  }
+  background-color: black;
 }
 
 .logo-container {
-  padding-top: .25rem;
-  padding-bottom: .25rem;
+  max-width: 390px;
   margin-right: 1rem;
-  font-size: 1.25rem;
-  line-height: inherit;
-  max-width: 350px;
 }
 
-.menu-container {
-  height: 0;
-  overflow: hidden;
-  
-  transition:cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  transform: height;
-  transition-duration: .5s;
+.header-list {
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
 
-  @media(min-width: $header-desktop-breakpoint) {
-    width: 80%;
-    justify-content: space-between;
+  &.social-links {
     flex-direction: row;
-  }
-
-  body.mobile-menu-active & { 
-    height: calc(100vh - 100px);
-  }
-
-  ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 2rem;
-    font-size: 1.5rem;
-  }
-
-  ul.social-links {
-    flex-direction: row;
-
+    align-items: end;
     * {
       margin-right: .25rem;
     }
   }
 
-  @media(min-width: $header-desktop-breakpoint) {
-    height: auto;
-    overflow: auto;
-    ul {
-      flex-direction: row;
-      font-size: 1.25rem;
-      align-items: center;
-      margin-left: 0;
-    }
-    ul.section-links {
-      width: 60%;
-      font-size: 1.25rem;
+  h3 {
+    margin: 0;
+  }
+
+  @media(min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    align-items: end;
+    margin-left: 0;
+    &.section-links {
+      width: 80%;
       li {
         margin-right: .5rem;
+        width: 6vw;
         color: white;
       }
+      .about-header-link {
+        display: none;
+      }
     }
-    ul.social-links {
-      width: 10%;
-      justify-content: flex-end;
+    &.social-links {
+      width: 20%;
+      justify-content: space-evenly;
     }
+  }
+}
+
+
+.menu-container {
+  height: 0;
+  overflow-y: scroll;
+  background-color: black;
+  
+  transition:cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  transform: height;
+  transition-duration: .5s;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  justify-content: flex-end;
+
+  @media(min-width: $desktop-breakpoint) {
+    justify-content: space-between;
+    flex-direction: row;
+    height: auto;
+    overflow: auto;
+  }
+
+  body.mobile-menu-active & { 
+    height: calc(100vh - 140px);
+    margin-top: 2rem;
   }
 }
 
 .menu-toggle-container {
   padding: 2rem;
 
-  @media(min-width: $header-desktop-breakpoint) {
+  @media(min-width: $desktop-breakpoint) {
     display: none;
+  }
+}
+
+
+.search-trigger {
+  vertical-align: text-top;
+  margin: auto;
+  text-align: center;
+  background-color: black;
+  color: $blue;
+  outline: none;
+  border: none;
+  margin: 0;
+  font-size: 1rem;
+
+  i {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  &:hover {
+    color: white;
+  }
+}
+
+.search-input-container {
+  height: 0;
+  display: none;
+  outline: 1px solid $blue;
+  border-radius: 10px;
+  padding: .25rem;
+  background-color: white;
+  z-index: 5;
+  width: 90%;
+  margin: 0 auto;
+  input {
+    font-size: 16px;
+    outline: none;
+    border: none;
+    width: 90%;
+    
+  }
+
+  button {
+    outline: none;
+    border: none;
+    color: $blue;
+    background: white;
+    &:hover {
+      color: white;
+      background: $blue;
+      border-radius: 10px;
+    }  
+  }
+  @include breakpoint($desktop-breakpoint) {
+    position: fixed;
+    top: 160px;
+    right: 30px;
+    bottom: inherit;
+    width: auto;
+  }
+
+  &.search-input-active {
+    display: block;
+    height: auto;
   }
 }
 
@@ -170,7 +231,7 @@ nav {
   &.open span:last-child {
     transform: rotate(-45deg) translate(4.4px, -4.4px);
   }
-  @include breakpoint($header-desktop-breakpoint) {
+  @include breakpoint($desktop-breakpoint) {
     display: none;
   }
   span {
@@ -181,38 +242,5 @@ nav {
     margin-top: 4px;
     background-color: white;
     transition: all .25s;
-  }
-}
-
-.search-trigger {
-  vertical-align: text-top;
-  margin: auto;
-  text-align: center;
-  background-color: black;
-  color: $blue;
-  outline: none;
-  border: none;
-  margin: 0;
-  font-size: 1rem;
-
-  i {
-    height: 18px;
-    width: 18px;
-  }
-}
-
-.search-input-container {
-  height: 0;
-  display: none;
-  @include breakpoint($header-desktop-breakpoint) {
-    position: fixed;
-    top: 70px;
-    right: 50px;
-    z-index: 5;
-  }
-
-  &.search-input-active {
-    display: block;
-    height: auto;
   }
 }

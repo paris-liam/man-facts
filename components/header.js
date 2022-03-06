@@ -2,19 +2,20 @@ import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
 import Router from 'next/router'
-import SideList from "./sidelist";
-export default function Header({tagList = [], sidePosts=[]}) {
- //TODO: create and style search button
+export default function Header({tagList = []}) {
 
   const [searchInputActive, toggleSearchInput] = useState(false);
+  const currentQuery = useRef('');  
+  const [validQuery, setValidQuery] = useState(false);
   const performSearch = () => {
-    if(currentQuery.current.value && currentQuery.current.value.trim() !== '') {
+    if(validQuery) {
       Router.push({
         pathname: '/collection/search',
         query: { keyword: currentQuery.current.value.trim() },
       })
     }
   }
+
 
   const [navActive, setNav] = useState(false);
   useEffect(() => {
@@ -24,13 +25,11 @@ export default function Header({tagList = [], sidePosts=[]}) {
       document.querySelector('body').classList.remove('mobile-menu-active');
     });
 
-    return (<>
-      <header>
-          <nav>
+    return (<header>
             <div className="mobile-menu-container">
-              <div className='logo-container'>
-                <a href="/" className="logo"><Image src={logo}/></a>
-              </div>
+              <a href="/"><div className='logo-container'>
+                <Image src={logo}/>
+              </div></a>
               <div className="menu-toggle-container">
                 <button onClick={()=> setNav(!navActive)}  aria-label="mobile menu" className={`nav-toggle${navActive ? ' open': ''}`}>
                   <span></span>
@@ -40,12 +39,15 @@ export default function Header({tagList = [], sidePosts=[]}) {
               </div>
             </div>
             <div className="menu-container">
-              <ul className="section-links">
-                {tagList.map((tag) => (
-                  <li key={tag}><a href={`/collection/tags?q=${tag}`}>{tag}</a></li>
+              <ul className="header-list section-links">
+                {tagList.map((tag, index) => (
+                  <li key={tag}><a href={`/collection/tags?q=${tag}`}><h3>test {index}</h3></a></li>
                 ))}
+                <li className='about-header-link'><a href="/about"><h3>About</h3></a></li>
+                <li className='about-header-link'><a href="/collection/authors"><h3>Brave Patriots</h3></a></li>
+                <li className='about-header-link'><a href="/write-for-us"><h3>Write for us</h3></a></li>
               </ul>
-              <ul className="social-links">
+              <ul className="header-list social-links">
                 <li><a href="https://www.facebook.com/ManFacts7/" target="_blank"><i className="fb"></i></a></li>
                 <li><a href="https://twitter.com/ManFacts7" target="_blank"><i className="twitter"></i></a></li>
                 <li><a href="https://www.instagram.com/therealmanfacts/" target="_blank"><i className="ig"></i></a></li>
@@ -54,21 +56,11 @@ export default function Header({tagList = [], sidePosts=[]}) {
                   </button></li>
               </ul>
               <div className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`}>
-                <input type='text' />
-                <button onClick={() => { performSearch() }}>
+                <input onChange={() => setValidQuery(currentQuery.current.value && currentQuery.current.value.trim() !== '')}ref={currentQuery} type='text' />
+                <button disabled={!validQuery} onClick={() => { performSearch() }}>
                   <i className='fa fa-search'></i>
                 </button>
               </div>
             </div>
-          </nav>
-      </header>
-      <div className='about-links-container'><ul className='about-links'>
-        <li><a href="/">About</a></li>
-        <li><a href="/collection/authors">Brave Patriots</a></li>
-        <li><a href="/">Write for us</a></li>
-      </ul></div>
-      { sidePosts.length > 0 && <div className="side-post-container">
-        <SideList posts={sidePosts}></SideList>
-      </div>}
-    </>);
+      </header>);
 }

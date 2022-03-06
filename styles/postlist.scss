@@ -1,12 +1,11 @@
 .post-list {
     list-style: none;
     margin-right: none;
-    width: 85%;
-    max-width: 800px;
     border: 2px solid;
     border-image: linear-gradient(to right, $pink, $blue) 1;
     padding: 1rem;
-    margin: 3rem auto 6rem;
+    width: 80%;
+    margin: auto;
 }
 
 .post-list-item > a {
@@ -15,7 +14,7 @@
     margin-bottom: 2rem;
     text-decoration: none;
     max-width: 800px;
-
+    flex-direction: column;
     &:hover {
         text-decoration: none;
         .post-list-item-text-title {
@@ -24,18 +23,31 @@
         }        
     }
     border-bottom: 1px dotted white;
+
+    @include breakpoint($desktop-breakpoint) {
+        flex-direction: row;
+    }
 }
 
 .post-list-item-image {
-    display: inline-block;
-    width: 50%;
-    margin-right: 1rem;
+    display: block;
+    
+    margin: auto;
+    margin-bottom: 1rem;
+    @include breakpoint($desktop-breakpoint) {
+        margin-right: 1rem;
+        width: 40%;
+    }
+    
 }
 
 .post-list-item-text-container {
-    display: inline-block;
+    display: flex;
     flex-direction: column;
-    width: 45%;
+
+    @include breakpoint($desktop-breakpoint) {
+        width: 60%;
+    }
 }
 
 .post-list-item-text-title, .post-list-item-text-date, .post-list-item-text-body {

@@ -18,10 +18,11 @@ export default function PostList({posts}) {
     {posts.map((post) => {
         return (
         <li className='post-list-item'><a href={'/posts/'+formatLink(post.title)}>
-            {post.image ? <img className='post-list-item-image' src={post.image}/> : ''}
+            {post.image ? <img className='post-list-item-image' src={post.image.url}/> : ''}
             <div className="post-list-item-text-container">
-                <h2 className="post-list-item-text-title">{post.title}</h2>
-                <h3 className="post-list-item-text-date">{post.date ? new Date(post.date).toLocaleString()?.split(',')[0] : ''}</h3>
+                <h3 className="post-list-item-text-title">
+                    {post.title}<br/><br/>  
+                    {post.date ? new Date(post.date).toLocaleString()?.split(',')[0] : ''} by {post.author}</h3>
                 <p className="post-list-item-text-body">{post.summary}</p>
             </div></a>
         </li>

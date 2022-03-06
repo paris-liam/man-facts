@@ -1,0 +1,47 @@
+.side-list-container {
+    position: relative;
+    z-index: 2;
+    background-color: black;
+    width: 100%;
+    right: 0;
+    top: 200px;
+    height: 100vh;
+    display: none;
+    overflow: scroll;
+    padding-right: 1rem;
+    @include breakpoint($desktop-breakpoint) {
+        position: fixed;
+        width: 30%;
+        display: block;
+    }
+}
+
+.side-list {
+    list-style: none;
+    border: 2px solid;
+    border-image: linear-gradient(to right, $pink, $blue) 1;
+    margin: auto;
+    margin-left: 0;
+    max-width: 400px;
+}
+
+.side-list-item > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding: 0.25rem;
+}
+
+.side-list-item-image {
+    max-width: 150px;
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.side-list-item-text-title {
+    width: 50%;
+    font-size: 12px;
+}

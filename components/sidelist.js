@@ -9,8 +9,8 @@ export default function SideList({posts}) {
     {posts.map((post) => {
         return (
         <li className='side-list-item'><a href={'/posts/'+formatLink(post.title)}>
-            {post.image ? <img className='side-list-item-image' src={post.image}/> : ''}
-            <h5 className="side-list-item-text-title">{post.title}</h5>
+            {post.image ? <img className='side-list-item-image' src={post.image.url}/> : ''}
+            <p className="side-list-item-text-title">{post.title}</p>
         </a>
         </li>
     )})}
