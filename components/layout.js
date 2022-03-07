@@ -6,16 +6,20 @@ import SideList from './sidelist';
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, tagList, sidePosts }) {
-  const [headerHeight, setHeaderHeight] = useState(180);
+  const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
     document.querySelector('body').classList += 'no-scroll';
-    setHeaderHeight(180);
+    setHeaderHeight(document.querySelector('header').scrollHeight);
     const checkScroll = () => {
       !window.scrollY || window.scrollY === 0 ? document.querySelector('body').classList += 'no-scroll' : document.querySelector('body').classList = '';
     };
 
-    window.addEventListener("scroll", checkScroll);
+    const resizeHeader = () => {
+      setHeaderHeight(document.querySelector('header').scrollHeight);
+    }
 
+    window.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", resizeHeader);
     return () => window.removeEventListener("scroll", checkScroll);
   }, []);
 
@@ -39,13 +43,13 @@ export default function Layout({ children, tagList, sidePosts }) {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         </Head>
-        <Header tagList={tagList}></Header>
+        <Header headerHeight={headerHeight} tagList={tagList}></Header>
         <main className="main-container">
           {children}
         </main>
         
         {sidePosts.length > 0 &&
-          <div className="side-list-container">
+          <div className="side-list-container" style={{top: `${headerHeight}px`}}>
             {/*<ul>
               <li><a href="/">About</a></li>
               <li><a href="/collection/authors">Brave Patriots</a></li>

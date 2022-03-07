@@ -4,6 +4,7 @@
 @import 'article';
 @import 'postlist';
 @import 'sidelist';
+@import 'carousel';
 @import 'layout';
 @import "./fontawesome/scss/fontawesome.scss";
 @import "./fontawesome/scss/solid.scss";
@@ -55,6 +56,7 @@ ul {
 
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Teko', sans-serif;
+  margin-top: 0;
 }
 
 p {

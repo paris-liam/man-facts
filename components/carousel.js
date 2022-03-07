@@ -1,29 +1,32 @@
 import React from 'react';
 
 export default function Carousel({posts}) {
-  const navigate = (direction) => console.warn('ok');
-  console.warn(posts);
+  let activeIndex = 0;
+  const numberOfSlides = posts.length;
+
+  const moveSlide = (direction) => {
+    activeIndex = activeIndex + direction;
+    console.warn(activeIndex);
+    if(activeIndex < 0) {
+      return activeIndex = numberOfSlides - 1;
+    } 
+    if( activeIndex > numberOfSlides) {
+      return activeIndex = 0;
+    }
+  }
   return (
     <div className='carousel'>
-      <button onClick={navigate('left')}>Left</button>
-      <button onClick={navigate('left')}>Right</button>
+      <div className='carousel__track-container'>
+        <button onClick={() => moveSlide(1)}className='carousel__button carousel__button--left'>+</button>
+        <ul className='carousel__track'>
           {posts.map((post, index) => (
-              <div className={`carousel-item ${index === 0 ? 'carousel-item-visible' : ''}`}>
-                    <img src={post.image.url}/>
-                    <h2>{post.title}</h2>
-                    <div></div>
-              </div>
-          ))
-          }
-                     <div class="carousel-actions">
-                <button id="carousel-button-prev" aria-label="Previous">+</button>
-                <button id="carousel-button-next" aria-label="Next">-</button>
-            </div>
-            <div class="carousel-dots">
-                <input class="dot selected-dot" type="radio" name="dot" checked />
-                <input class="dot" type="radio" name="dot" />
-                <input class="dot" type="radio" name="dot" />
-            </div>
+            <li className={`carousel__slide ${index === activeIndex ? 'active-slide' : ''}`}>
+              <img src={post.image.url}/>
+            </li>
+          ))}
+        </ul>
+        <button onClick={() => moveSlide(-1)}className='carousel__button carousel__button--right'>-</button>
+      </div>
     </div>
   );
 }

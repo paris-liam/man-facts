@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
 import Router from 'next/router'
-export default function Header({tagList = []}) {
+export default function Header({headerHeight= 100, tagList = []}) {
 
   const [searchInputActive, toggleSearchInput] = useState(false);
   const currentQuery = useRef('');  
@@ -55,7 +55,7 @@ export default function Header({tagList = []}) {
                     {!searchInputActive ? <i className='fa fa-search'></i> : <i className='fa fa-close'></i> }
                   </button></li>
               </ul>
-              <div className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`}>
+              <div className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`} style={{top: `${headerHeight}px`}}>
                 <input onChange={() => setValidQuery(currentQuery.current.value && currentQuery.current.value.trim() !== '')}ref={currentQuery} type='text' />
                 <button disabled={!validQuery} onClick={() => { performSearch() }}>
                   <i className='fa fa-search'></i>
