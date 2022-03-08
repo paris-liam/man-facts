@@ -44,6 +44,7 @@
 .post-list-item-text-container {
     display: flex;
     flex-direction: column;
+    margin-left: auto;
 
     @include breakpoint($desktop-breakpoint) {
         width: 60%;
