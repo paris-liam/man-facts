@@ -44,17 +44,18 @@ export default function Layout({ children, tagList, sidePosts }) {
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         </Head>
         <Header headerHeight={headerHeight} tagList={tagList}></Header>
-        <main className="main-container">
-          {children}
-        </main>
-        
-        {sidePosts.length > 0 &&
-          <div className="side-list-container" style={{top: `${headerHeight}px`}}>
-            {/*<ul>
+        {/*<ul>
               <li><a href="/">About</a></li>
               <li><a href="/collection/authors">Brave Patriots</a></li>
               <li><a href="/">Write for us</a></li>
             </ul>*/}
+        <main className="main-container">
+          {children}
+        </main>
+        
+        {sidePosts && sidePosts.length > 0 &&
+          <div className="side-list-container" style={{top: `${headerHeight}px`}}>
+  
             <SideList posts={sidePosts}></SideList>
           </div>
         }

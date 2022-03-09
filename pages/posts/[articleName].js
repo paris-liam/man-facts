@@ -8,7 +8,6 @@ export async function getStaticProps({ params }) {
   const postData = await getPostData(params.articleName);
   const sidePosts = await getAllPostData();
   const tagList = await createTagList();
-  console.warn(postData);
   return {
     props: {
       postData,
@@ -22,8 +21,8 @@ const formatAuthorLink = (name) => {
   return !name ? '' : name.toLowerCase().split(' ').join('-');
 }
 
-export default function Post({ postData, tagList, sidePosts }) {
-  const {image, title, date, author, body} = postData;
+export default function Post({ postData }) {
+  const {image, title, date, author, body} = postData || '';
   return (<Layout> 
     <div className='container-border'><img src={image}/>    
     <h1>{title}</h1>

@@ -17,11 +17,10 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Author({ authorData, tagList }) {
-  console.warn(authorData);
   let {name, image, body, articleList }= authorData;
   return (
   <Layout tagList={tagList}> 
-    <div className='container-border'><img src={image.url}/>
+    <div className='container-border'><img src={image?.url}/>
     <h1>{name}</h1>
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div>
     <div>
