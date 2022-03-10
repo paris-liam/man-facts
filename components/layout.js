@@ -9,7 +9,7 @@ export default function Layout({ children, tagList, sidePosts }) {
   const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
     document.querySelector('body').classList += 'no-scroll';
-    setHeaderHeight(document.querySelector('header').scrollHeight);
+    setHeaderHeight(document.querySelector('header').getBoundingClientRect().height);
     const checkScroll = () => {
       !window.scrollY || window.scrollY === 0 ? document.querySelector('body').classList += 'no-scroll' : document.querySelector('body').classList = '';
     };

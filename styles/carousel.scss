@@ -1,13 +1,23 @@
 .carousel {
-    width: 80%;
+    width: 50vw;
     height: calc(50vw * .5625);
     margin: 0 auto;
+    position: relative;
 }
 
 .carousel__track {
     padding: 0;
     margin: 0;
     list-style: none;
+    position: relative;
+    height: 100%;
+    transition: transform 250ms ease-in;
+    overflow: hidden;
+    overflow-x: scroll;
+
+    @media(min-width: $desktop-breakpoint) {
+        overflow-x: hidden;
+    }
 }
 
 .carousel__track-container {
@@ -20,7 +30,6 @@
     position: absolute;
     width: 100%;
     top: 0;
-    bottom: 0;
 
     img {
         width: 100%;
@@ -29,19 +38,42 @@
         
     }
 
-    &.active-slide {
-        transform: translateX(0);
+    transition: all 250ms ease-in;
+
+    .carousel-slide-title {
+        position: absolute;
+        bottom: 5%;
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .carousel-slide-overlay {
+        position: absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        background: rgba(0,0,0,.4);
     }
 }
 
 .carousel__button {
+    z-index: 2;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    height: 100%;
+    outline: none;
+    background: black;
+    color: $blue;
+    border: none;
+    font-size: 2rem;
     &--left {
-        left: -40px;
+        left: 0;
     }
     &--right {
-        right: -40px;
+        right: 0;
     }
 }
