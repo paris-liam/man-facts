@@ -1,8 +1,13 @@
 .carousel {
-    width: 50vw;
-    height: calc(50vw * .5625);
+    width: 75vw;
+    height: calc(75vw * .5625);
     margin: 0 auto;
     position: relative;
+
+    @media(min-width: $desktop-breakpoint) {
+        width: 50vw;
+        height: calc(50vw * .5625);
+    }
 }
 
 .carousel__track {
@@ -48,6 +53,9 @@
         z-index: 2;
         padding-left: 10px;
         padding-right: 10px;
+
+        --min: 1rem;
+        --val: 2vw;
     }
 
     .carousel-slide-overlay {
@@ -71,9 +79,9 @@
     border: none;
     font-size: 2rem;
     &--left {
-        left: 0;
+        left: -30px;
     }
     &--right {
-        right: 0;
+        right: -30px;
     }
 }

@@ -22,7 +22,7 @@ export default function PostList({posts}) {
             <div className="post-list-item-text-container">
                 <h3 className="post-list-item-text-title">
                     {post.title}<br/><br/>  
-                    {post.date ? new Date(post.date).toLocaleString()?.split(',')[0] : ''} by {post.author}</h3>
+                    {post.date ? new Date(post.date).toLocaleString()?.split(',')[0] : ''} by {post.authors && post.authors.map((author) => <span>{author}, </span> )}</h3>
                 <p className="post-list-item-text-body">{post.summary}</p>
             </div></a>
         </li>

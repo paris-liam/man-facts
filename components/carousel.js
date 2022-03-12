@@ -14,10 +14,12 @@ export default function Carousel({ posts }) {
   }, []);
   
   const findSlideWidth = () => {
-    const slide = slideRefs.current[0];
-    const computedSlideWidth = slide.getBoundingClientRect().width;
-    setSlideWidth(computedSlideWidth);
-    resetSlidePositions(computedSlideWidth)
+    if(slideRefs.current[0]) {
+      const slide = slideRefs.current[0];
+      const computedSlideWidth = slide.getBoundingClientRect().width;
+      setSlideWidth(computedSlideWidth);
+      resetSlidePositions(computedSlideWidth)
+    }
   }
 
   const resetSlidePositions = (computedSlideWidth, reverse) => {
@@ -53,7 +55,7 @@ export default function Carousel({ posts }) {
 
   return (
     <div className='carousel'>
-      <button onClick={() => { moveSlide(1) }} className='carousel__button carousel__button--left'><i class="fa-solid fa-arrow-left"></i></button>
+      <button onClick={() => { moveSlide(1) }} className='carousel__button carousel__button--left'><i className="fa-solid fa-arrow-left"></i></button>
       <div className='carousel__track-container'>
         <ul className='carousel__track'>
           {posts.map((post, index) => (
@@ -65,7 +67,7 @@ export default function Carousel({ posts }) {
           ))}
         </ul>
       </div>
-      <button onClick={() => { moveSlide(-1) }} className='carousel__button carousel__button--right'><i class="fa-solid fa-arrow-right"></i></button>
+      <button onClick={() => { moveSlide(-1) }} className='carousel__button carousel__button--right'><i className="fa-solid fa-arrow-right"></i></button>
     </div>
   );
 }

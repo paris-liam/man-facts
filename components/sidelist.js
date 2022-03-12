@@ -4,7 +4,7 @@ import { formatLink } from "../lib/utils";
 export default function SideList({posts}) {
     return (
     <>
-    <h2>Trending</h2>
+    <h2>Top Posts</h2>
     <ul className='side-list'>
     {posts.map((post) => {
         return (
