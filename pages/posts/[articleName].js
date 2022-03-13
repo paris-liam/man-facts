@@ -3,6 +3,7 @@ import { generatePostPaths, getAllPostData, getPostData } from '../../lib/posts'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Header from '../../components/header';
 import {createTagList} from '../../lib/tags'
+import Link from 'next/link';
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.articleName);
@@ -26,7 +27,7 @@ export default function Post({ postData }) {
   return (<Layout> 
     <div className='container-border'><img src={image}/>    
     <h1>{title}</h1>
-    <h4>{date ? date.toLocaleString()?.split(',')[0] : ''} by <a className='author-link' href={formatAuthorLink(author)}>{author}</a></h4>
+    <h4>{date ? date.toLocaleString()?.split(',')[0] : ''} by <Link href={formatAuthorLink(author)}><a className='author-link'>{author}</a></Link></h4>
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div></div>
   </Layout>)
 }

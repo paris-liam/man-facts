@@ -3,6 +3,7 @@ import styles from './layout.module.css'
 import { useState, useEffect } from 'react'
 import Header from './header';
 import SideList from './sidelist';
+import Link from 'next/link';
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, tagList, sidePosts }) {
@@ -45,9 +46,9 @@ export default function Layout({ children, tagList, sidePosts }) {
         </Head>
         <Header headerHeight={headerHeight} tagList={tagList}></Header>
         {/*<ul>
-              <li><a href="/">About</a></li>
-              <li><a href="/collection/authors">Brave Patriots</a></li>
-              <li><a href="/">Write for us</a></li>
+              <li><Link  href="/"><a>About</a></Link></li>
+              <li><Link  href="/collection/authors"><a>Brave Patriots</a></Link></li>
+              <li><Link  href="/"><a>Write for us</a></Link></li>
             </ul>*/}
         <main className="main-container">
           {children}

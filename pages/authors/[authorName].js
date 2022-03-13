@@ -3,6 +3,7 @@ import { generateAuthorPaths, getAuthorData } from '../../lib/authors'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Header from '../../components/header';
 import { createTagList } from '../../lib/tags';
+import Link from 'next/link';
 
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
@@ -28,9 +29,9 @@ export default function Author({ authorData, tagList }) {
       <ul>
         {articleList.map((article) => {
           return (<li key={article.name}>
-            <a href={article.link}>
+            <Link  href={article.link}><a>
               {article.name}
-            </a>
+            </a></Link>
           </li>)
         })}
       </ul>    

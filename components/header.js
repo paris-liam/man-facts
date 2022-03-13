@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Link from 'next/link';
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
 import Router from 'next/router'
@@ -27,9 +28,9 @@ export default function Header({headerHeight= 100, tagList = []}) {
 
     return (<header>
             <div className="mobile-menu-container">
-              <a href="/"><div className='logo-container'>
+              <Link  href="/"><a><div className='logo-container'>
                 <Image src={logo}/>
-              </div></a>
+              </div></a></Link>
               <div className="menu-toggle-container">
                 <button onClick={()=> setNav(!navActive)}  aria-label="mobile menu" className={`nav-toggle${navActive ? ' open': ''}`}>
                   <span></span>
@@ -41,16 +42,16 @@ export default function Header({headerHeight= 100, tagList = []}) {
             <div className="menu-container">
               <ul className="header-list section-links">
                 {tagList.map((tag, index) => (
-                  <li key={tag}><a href={`/collection/tags?q=${tag}`}><h3>test {index}</h3></a></li>
+                  <li key={tag}><Link  href={`/collection/tags?q=${tag}`}><a><h3>test {index}</h3></a></Link></li>
                 ))}
-                <li className='about-header-link'><a href="/about"><h3>About</h3></a></li>
-                <li className='about-header-link'><a href="/collection/authors"><h3>Brave Patriots</h3></a></li>
-                <li className='about-header-link'><a href="/write-for-us"><h3>Write for us</h3></a></li>
+                <li className='about-header-link'><Link  href="/about"><a><h3>About</h3></a></Link></li>
+                <li className='about-header-link'><Link  href="/collection/authors"><a><h3>Brave Patriots</h3></a></Link></li>
+                <li className='about-header-link'><Link  href="/write-for-us"><a><h3>Write for us</h3></a></Link></li>
               </ul>
               <ul className="header-list social-links">
-                <li><a href="https://www.facebook.com/ManFacts7/" target="_blank"><i className="fb"></i></a></li>
-                <li><a href="https://twitter.com/ManFacts7" target="_blank"><i className="twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/therealmanfacts/" target="_blank"><i className="ig"></i></a></li>
+                <li><Link  href="https://www.facebook.com/ManFacts7/" target="_blank" rel="noreferrer"><a><i className="fb"></i></a></Link></li>
+                <li><Link  href="https://twitter.com/ManFacts7" target="_blank" rel="noreferrer"><a><i className="twitter"></i></a></Link></li>
+                <li><Link  href="https://www.instagram.com/therealmanfacts/" target="_blank" rel="noreferrer"><a><i className="ig"></i></a></Link></li>
                 <li>                  <button className='search-trigger' onClick={() => {toggleSearchInput(!searchInputActive)}}>
                     {!searchInputActive ? <i className='fa fa-search'></i> : <i className='fa fa-close'></i> }
                   </button></li>
