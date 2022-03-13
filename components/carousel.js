@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useState, useEffect, useRef } from 'react'
 
 export default function Carousel({ posts }) {
@@ -7,7 +7,6 @@ export default function Carousel({ posts }) {
   const [slideWidth, setSlideWidth] = useState(0);
   const numberOfSlides = posts.length || 0;
   const [slidePositions, setSlidePositions] = useState(Array(numberOfSlides).fill(0));
-
   useEffect(() => {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
@@ -30,20 +29,25 @@ export default function Carousel({ posts }) {
     return reverse ? setSlidePositions(newPositions.reverse()) : setSlidePositions(newPositions);
   }
 
-  const moveSlide = (direction) => {
+  const moveSlide = (direction, auto=false) => {
     let newSlideIndex = direction + activeIndex;
+    console.warn(newSlideIndex);
     if (newSlideIndex < 0) {
+      console.warn('setting to last');
       newSlideIndex = numberOfSlides - 1;
       resetSlidePositions(slideWidth, true);
       return setActiveIndex(newSlideIndex);
     }
     else if (newSlideIndex >= numberOfSlides) {
+      console.warn('setting to zero');
       newSlideIndex = 0;
       resetSlidePositions(slideWidth);
       return setActiveIndex(newSlideIndex);
     }
 
     setActiveIndex(newSlideIndex);
+    console.warn('setting to ', newSlideIndex);
+
     let newPositions = slidePositions.map((_position, index) => {
       if(index === newSlideIndex) {
           return 0;

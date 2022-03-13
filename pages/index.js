@@ -11,7 +11,7 @@ export default function Home({ allPosts, homePosts, tagList }) {
         <h2>Recent</h2>
         <Carousel posts={recentPosts}></Carousel>
         <h2>Trending</h2>
-        <PostList posts={allPosts}></PostList>
+        <PostList posts={trendingPosts}></PostList>
         <h2>Popular</h2>
         <PostList posts={popularPosts}></PostList>
     </Layout>

@@ -8,7 +8,7 @@ export default function PostList({posts}) {
         let summary = '';
         const MAX_LENGTH = 150;
         if(post.body) {
-            let bodyString = documentToHtmlString(post.body).replaceAll(/<[a-z]>|<\/[a-z]>/g, ' ')
+            let bodyString = documentToHtmlString(post.body).replaceAll(/<[^>]*>/g, ' ')
             summary = bodyString.substring(0,MAX_LENGTH) + '...';
         }
         posts[index].summary = summary;
