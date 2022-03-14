@@ -4,7 +4,7 @@ import { generateHomePosts, getAllPostData } from '../lib/posts';
 import Carousel from '../components/carousel';
 import PostList from '../components/postlist';
 
-export default function Home({ allPosts, homePosts, tagList }) {
+export default function Home({homePosts, tagList }) {
   const {topPosts, recentPosts, trendingPosts, popularPosts} = homePosts;
   return (
     <Layout tagList={tagList} sidePosts={topPosts}>
@@ -20,12 +20,10 @@ export default function Home({ allPosts, homePosts, tagList }) {
 
 export async function getStaticProps() {
   const homePosts = await generateHomePosts(); 
-  const allPosts = await getAllPostData();
   const tagList = await createTagList();
   return {
     props: {
       homePosts,
-      allPosts,
       tagList
     }
   }

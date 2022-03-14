@@ -6,6 +6,7 @@
 @import 'sidelist';
 @import 'carousel';
 @import 'layout';
+@import 'social-media-buttons';
 @import "./fontawesome/scss/fontawesome.scss";
 @import "./fontawesome/scss/solid.scss";
 @import "./fontawesome/scss/brands.scss";
@@ -82,12 +83,12 @@ h2 {
 h3,h4,h5,h6 {
   --min: 1.25rem;   /* minimum value */
   --val: 3vw;     /* preferred value = 4% viewport width */
-  --max: 1.5rem;  /* maximum value */
+  --max: 1.75rem;  /* maximum value */
 }
 p {
   --min: .75rem;   /* minimum value */
   --val: 1.5vw; /* preferred value = 2.5% viewport width */
-  --max: 1.5rem; /* maximum value */
+  --max: 1.25rem; /* maximum value */
 }
 
 .twitter {
