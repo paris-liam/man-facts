@@ -1,4 +1,4 @@
-@import 'vars.scss';
+@import "vars.scss";
 
 header {
   position: fixed;
@@ -6,19 +6,19 @@ header {
   left: 0;
   height: auto;
   width: 100%;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   background: black;
   z-index: 3;
   display: grid;
   grid-template-columns: 100%;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   align-items: flex-end;
   body.no-scroll & {
     position: relative;
-    padding: .5rem 0;
+    padding: 0.5rem 0;
   }
 
-  @media(min-width: $desktop-breakpoint) {
+  @media (min-width: $desktop-breakpoint) {
     grid-template-columns: 20% 80%;
   }
 }
@@ -50,22 +50,24 @@ header {
     flex-direction: row;
     align-items: end;
     * {
-      margin-right: .25rem;
+      margin-right: 0.25rem;
     }
   }
 
   h3 {
     margin: 0;
+    --width: 2vw;
+    --max: 1.5rem;
   }
 
-  @media(min-width: $desktop-breakpoint) {
+  @media (min-width: $desktop-breakpoint) {
     flex-direction: row;
     align-items: end;
     margin-left: 0;
     &.section-links {
       width: 80%;
       li {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
         color: white;
       }
       .about-header-link {
@@ -79,28 +81,27 @@ header {
   }
 }
 
-
 .menu-container {
   height: 0;
   overflow-y: scroll;
   background-color: black;
-  
-  transition:cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+  transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
   transform: height;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
   justify-content: flex-end;
 
-  @media(min-width: $desktop-breakpoint) {
+  @media (min-width: $desktop-breakpoint) {
     justify-content: space-between;
     flex-direction: row;
     height: auto;
     overflow: auto;
   }
 
-  body.mobile-menu-active & { 
+  body.mobile-menu-active & {
     height: calc(100vh - 140px);
     margin-top: 2rem;
   }
@@ -109,11 +110,10 @@ header {
 .menu-toggle-container {
   padding: 2rem;
 
-  @media(min-width: $desktop-breakpoint) {
+  @media (min-width: $desktop-breakpoint) {
     display: none;
   }
 }
-
 
 .search-trigger {
   vertical-align: text-top;
@@ -141,7 +141,7 @@ header {
   display: none;
   outline: 1px solid $blue;
   border-radius: 10px;
-  padding: .25rem;
+  padding: 0.25rem;
   background-color: white;
   z-index: 5;
   width: 90%;
@@ -151,7 +151,6 @@ header {
     outline: none;
     border: none;
     width: 90%;
-    
   }
 
   button {
@@ -163,7 +162,7 @@ header {
       color: white;
       background: $blue;
       border-radius: 10px;
-    }  
+    }
   }
   @include breakpoint($desktop-breakpoint) {
     position: fixed;
@@ -178,10 +177,9 @@ header {
   }
 }
 
-
 .hide-nav {
   transform: translateY(-120%!important);
-  -webkit-transform: translateY(-120%)!important;
+  -webkit-transform: translateY(-120%) !important;
 }
 
 .mobile-menu {
@@ -196,7 +194,7 @@ header {
   transition: all 1.3s ease-out;
   z-index: 10;
   &:before {
-    content: '';
+    content: "";
     display: table;
     clear: both;
   }
@@ -239,6 +237,6 @@ header {
     width: 100%;
     margin-top: 4px;
     background-color: white;
-    transition: all .25s;
+    transition: all 0.25s;
   }
 }

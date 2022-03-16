@@ -8,10 +8,22 @@ export default function Carousel({ posts }) {
   const [slideWidth, setSlideWidth] = useState(0);
   const numberOfSlides = posts.length || 0;
   const [slidePositions, setSlidePositions] = useState(Array(numberOfSlides).fill(0));
+  const [runAutoPlay, setAutoPlay] = useState(false);
   useEffect(() => {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
+    const startAutoPlay = setTimeout(() => {
+      console.warn('timeout called');
+      return setAutoPlay(true)
+    }, 5000);
+    return () => clearTimeout(startAutoPlay);
   }, []);
+
+  useEffect(() => {
+    console.warn('setting autoplay to ', runAutoPlay)
+  }, [runAutoPlay]);
+
+
 
   const findSlideWidth = () => {
     if (slideRefs.current[0]) {
@@ -31,6 +43,10 @@ export default function Carousel({ posts }) {
   }
 
   const moveSlide = (direction, auto = false) => {
+    if(!auto) {
+      setAutoPlay(false);
+    }
+    console.warn('called');
     let newSlideIndex = direction + activeIndex;
     if (newSlideIndex < 0) {
       newSlideIndex = numberOfSlides - 1;
@@ -60,7 +76,7 @@ export default function Carousel({ posts }) {
       <div className='carousel__track-container'>
         <ul className='carousel__track'>
           {posts.map((post, index) => (
-            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title)}><li ref={ref => slideRefs.current.push(ref)}  style={{ left: slidePositions[index] + 'px' }} className={`carousel__slide`}>
+            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title)}><li ref={ref => slideRefs.current.push(ref)} style={{ left: slidePositions[index] + 'px' }} className={`carousel__slide`}>
               <img src={post.image.url} />
               <h2 className='carousel-slide-title'>{post.title}</h2>
               <div className='carousel-slide-overlay'></div>
