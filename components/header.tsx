@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, LegacyRef, Ref } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
@@ -6,16 +6,16 @@ import Router from 'next/router'
 export default function Header({headerHeight= 100, tagList = []}) {
 
   const [searchInputActive, toggleSearchInput] = useState(false);
-  const currentQuery = useRef('');  
+  //const currentQuery: Ref<HTMLInputElement> = useRef('');  
   const [validQuery, setValidQuery] = useState(false);
-  const performSearch = () => {
+  /*const performSearch = () => {
     if(validQuery) {
       Router.push({
         pathname: '/collection/search',
-        query: { keyword: currentQuery.current.value.trim() },
+        query: { keyword: currentQuery. },
       })
     }
-  }
+  }*/
 
 
   const [navActive, setNav] = useState(false);
@@ -57,8 +57,8 @@ export default function Header({headerHeight= 100, tagList = []}) {
                   </button></li>
               </ul>
               <div className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`} style={{top: `${headerHeight}px`}}>
-                <input onChange={() => setValidQuery(currentQuery.current.value && currentQuery.current.value.trim() !== '')}ref={currentQuery} type='text' />
-                <button disabled={!validQuery} onClick={() => { performSearch() }}>
+                {/*<input onChange={() => setValidQuery(currentQuery.current && currentQuery.current.trim() !== '')} ref={currentQuery} type='text' />*/}
+                <button disabled={!validQuery} onClick={() => {  }}>
                   <i className='fa fa-search'></i>
                 </button>
               </div>

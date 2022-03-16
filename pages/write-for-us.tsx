@@ -1,8 +1,10 @@
 import Layout from '../components/layout'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { getAboutUsData, getWriteForUsData } from '../lib/miscData';
+import { getTopPosts } from '../lib/posts';
+import { createTagList } from '../lib/tags';
 
-export default function WriteForUs({ writeForUsContent }) {
+export default function WriteForUs({ tagList, sidePosts, writeForUsContent }) {
     const body = writeForUsContent.items[0].fields.writeForUs
   return (<Layout tagList={tagList} sidePosts={sidePosts} sideTitle="Top Posts"> 
     <div className='container-border'>

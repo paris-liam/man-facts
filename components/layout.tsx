@@ -9,10 +9,10 @@ export const siteTitle = 'Next.js Sample Website'
 export default function Layout({ children, tagList, sidePosts, sideTitle }) {
   const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
-    document.querySelector('body').classList += 'no-scroll';
+    document.querySelector('body').classList.add('no-scroll');
     setHeaderHeight(document.querySelector('header').getBoundingClientRect().height);
     const checkScroll = () => {
-      !window.scrollY || window.scrollY === 0 ? document.querySelector('body').classList += 'no-scroll' : document.querySelector('body').classList = '';
+      !window.scrollY || window.scrollY === 0 ? document.querySelector('body').classList.add('no-scroll') : document.querySelector('body').classList.remove('no-scroll');
     };
 
     const resizeHeader = () => {

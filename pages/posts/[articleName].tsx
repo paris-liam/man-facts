@@ -17,9 +17,21 @@ export default function Post({ postData, tagList, sidePosts, req }) {
   const shareLink = `https://man-facts.org${router.asPath}`;
   return (<Layout tagList={tagList} sidePosts={sidePosts} sideTitle="Related Posts">
     <div className='container-border post-container'>
-      <img src={image.url} />
+      {image && image.url && <img src={image.url} />}
       <h1>{title}</h1>
-      <h4>{date ? new Date(date).toLocaleString()?.split(',')[0] : ''} by { authors.map((author) => <Link key={author} href={'/authors/'+formatAuthorLink(author)}><a className='author-link'>{author}</a></Link>)}</h4>
+      <h4>
+        {date ? new Date(date).toLocaleString()?.split(',')[0] : ''} 
+      {authors && (
+        <>
+          <span>by</span>
+          {authors.map((author) => (
+            <Link key={author} href={'/authors/' + formatAuthorLink(author)}>
+              <a className='author-link'>{author}</a>
+            </Link>
+          ))}
+        </>
+      )}
+      </h4>
       <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(body) }}>
       </div>
       <a className="resp-sharing-button__link" href={`https://facebook.com/sharer/sharer.php?u=${shareLink}`} target="_blank" rel="noreferrer" aria-label="Share on Facebook">

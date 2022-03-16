@@ -11,13 +11,14 @@ export const formatAuthors = (post) => {
     return post.fields?.author?.fields.name ? [post.fields?.author?.fields.name] : null;
 }
 export const formatTags = (tags) => {
-    const tagList = new Set();
+    const tagList: Set<string> = new Set();
     tags.forEach((tag) => {
         if (tag.sys && tag.sys.id) {
             tagList.add(tag.sys?.id);
         }
     })
-    return [...tagList];
+    const finalTagList = Array.from(tagList);
+    return finalTagList;
 }
 
 export const formatPostData = (allPosts: Array<any>) => sortByDate(allPosts

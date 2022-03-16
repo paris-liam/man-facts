@@ -81,6 +81,7 @@ export async function getRelatedPosts(articleInfo) {
     return [...taggedPost,...authorPosts].slice(0,3);
   }
 
+  
   return [...taggedPostRemoved,...authorPostsRemoved, ...postData.sort(() => .5 - Math.random())].slice(0,3);
 }
 

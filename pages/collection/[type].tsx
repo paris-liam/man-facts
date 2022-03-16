@@ -4,6 +4,7 @@ import Header from '../../components/header';
 import { getAllAuthorData } from '../../lib/authors';
 import PostList from '../../components/postlist';
 import { createTagList } from '../../lib/tags';
+import { getAllPostData } from '../../lib/posts';
 
 export async function getServerSideProps({query}) {  
   const postData = await getAllPostData();
@@ -34,7 +35,7 @@ export default function Post({ postData, authorData, tagList, type, q}) {
   let searchType = ''
   if(type === 'authors') {
     searchType = 'Brave Patriots';
-    results = formatAuthorsForPostList(authorData.items); //TODO create standard format 
+    results = []; //formatAuthorsForPostList(authorData.items); //TODO create standard format 
   }
   else if(type === 'tags') {
     searchType = q;
@@ -43,7 +44,7 @@ export default function Post({ postData, authorData, tagList, type, q}) {
     searchType = `Search Results for: ${q}`; 
   }
   return (
-  <Layout tagList={tagList}> 
+  <Layout tagList={tagList} sidePosts={[]} sideTitle={"Top Posts"}> 
     <h1>{searchType}</h1>
     <PostList posts={results}></PostList>
     </Layout>)
