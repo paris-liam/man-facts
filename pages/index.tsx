@@ -7,7 +7,7 @@ import PostList from '../components/postlist';
 export default function Home({homePosts, tagList }) {
   const {topPosts, recentPosts, trendingPosts, popularPosts} = homePosts;
   return (
-    <Layout tagList={tagList} sidePosts={topPosts}>
+    <Layout tagList={tagList} sidePosts={topPosts} sideTitle="Top Posts">
         <h2>Recent</h2>
         <Carousel posts={recentPosts}></Carousel>
         <h2>Trending</h2>

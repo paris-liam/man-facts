@@ -2,10 +2,10 @@ import { formatLink } from "../lib/utils";
 import Link from 'next/link';
 
 
-export default function SideList({posts}) {
+export default function SideList({title, posts}) {
     return (
     <>
-    <h2>Top Posts</h2>
+    <h2>{title}</h2>
     <ul className='side-list'>
     {posts.map((post) => {
         return (

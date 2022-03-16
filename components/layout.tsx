@@ -6,7 +6,7 @@ import SideList from './sidelist';
 import Link from 'next/link';
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, tagList, sidePosts }) {
+export default function Layout({ children, tagList, sidePosts, sideTitle }) {
   const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
     document.querySelector('body').classList += 'no-scroll';
@@ -57,7 +57,7 @@ export default function Layout({ children, tagList, sidePosts }) {
         {sidePosts && sidePosts.length > 0 &&
           <div className="side-list-container" style={{top: `${headerHeight}px`}}>
   
-            <SideList posts={sidePosts}></SideList>
+            <SideList title={sideTitle} posts={sidePosts}></SideList>
           </div>
         }
       </div>

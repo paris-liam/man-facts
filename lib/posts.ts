@@ -1,5 +1,4 @@
-import { createClient } from "contentful";
-import { formatLink, formatPostData, sortByDate } from "./utils";
+import { createContentfulClient, formatLink, formatPostData, sortByDate } from "./utils";
 
 const TOP_POST_TAG_NAME = 'topPost';
 const NUMBER_OF_RECENT_POSTS = 5;
@@ -25,13 +24,15 @@ const removeFilteredPosts = (filteredPosts, allPosts) => {
 }
 
 export async function getAllPostData() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_KEY
-  })
-  const allPosts = await client.getEntries({ content_type: 'blogPost' });
+
+  const allPosts = await createContentfulClient().getEntries({ content_type: 'blogPost' });
 
   return formatPostData(allPosts.items);
+}
+
+export async function getTopPosts() {
+  const postData = await getAllPostData();
+  return sortByDate(filterTopPosts(postData));
 }
 
 export async function generateHomePosts() {
@@ -53,6 +54,34 @@ export async function generateHomePosts() {
     trendingPosts,
     popularPosts
   }
+}
+
+export async function getRelatedPosts(articleInfo) {
+  const postData = await getAllPostData();
+  let articlesToRemove = [articleInfo];
+  //grab posts with the same tags
+  const taggedPost = postData.filter((post) => {
+    return post.tags.filter((tag) => articleInfo.tags.includes(tag)).length > 0;
+  })
+  const taggedPostRemoved = taggedPost.filter((post) => {
+    return !articlesToRemove.find((removePost) => post.title === removePost.title); 
+  });
+
+  if(taggedPostRemoved.length >= 3) {
+    return taggedPostRemoved.slice(0,3);
+  }
+  //grab posts with same author
+  const authorPosts = postData.filter((post) => {
+    return post.authors.filter((author) => articleInfo.authors.includes(author)).length > 0;
+  });
+  const authorPostsRemoved = authorPosts.filter((post) => {
+    return !articlesToRemove.find((removePost) => post.title === removePost.title);
+  });
+  if([...taggedPostRemoved,...authorPostsRemoved].length >= 3) {
+    return [...taggedPost,...authorPosts].slice(0,3);
+  }
+
+  return [...taggedPostRemoved,...authorPostsRemoved, ...postData.sort(() => .5 - Math.random())].slice(0,3);
 }
 
 export async function generatePostPaths() {

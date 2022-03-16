@@ -42,16 +42,16 @@ export default function Header({headerHeight= 100, tagList = []}) {
             <div className="menu-container">
               <ul className="header-list section-links">
                 {tagList.map((tag, index) => (
-                  <li key={tag}><Link  href={`/collection/tags?q=${tag}`}><a><h3>test {index}</h3></a></Link></li>
+                  <li key={tag.id}><Link  href={`/collection/tags?q=${tag.id}`}><a><h3>{tag.displayName}</h3></a></Link></li>
                 ))}
                 <li className='about-header-link'><Link  href="/about"><a><h3>About</h3></a></Link></li>
                 <li className='about-header-link'><Link  href="/collection/authors"><a><h3>Brave Patriots</h3></a></Link></li>
                 <li className='about-header-link'><Link  href="/write-for-us"><a><h3>Write for us</h3></a></Link></li>
               </ul>
               <ul className="header-list social-links">
-                <li><Link  href="https://www.facebook.com/ManFacts7/" target="_blank" rel="noreferrer"><a><i className="fb"></i></a></Link></li>
-                <li><Link  href="https://twitter.com/ManFacts7" target="_blank" rel="noreferrer"><a><i className="twitter"></i></a></Link></li>
-                <li><Link  href="https://www.instagram.com/therealmanfacts/" target="_blank" rel="noreferrer"><a><i className="ig"></i></a></Link></li>
+                <li><a href="https://www.facebook.com/ManFacts7/" target="_blank" rel="noreferrer"><i className="fb"></i></a></li>
+                <li><a href="https://twitter.com/ManFacts7" target="_blank" rel="noreferrer"><i className="twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/therealmanfacts/" target="_blank" rel="noreferrer"><i className="ig"></i></a></li>
                 <li>                  <button className='search-trigger' onClick={() => {toggleSearchInput(!searchInputActive)}}>
                     {!searchInputActive ? <i className='fa fa-search'></i> : <i className='fa fa-close'></i> }
                   </button></li>

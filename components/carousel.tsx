@@ -1,5 +1,6 @@
-import React, { useLayoutEffect } from 'react';
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react'
+import { formatLink } from '../lib/utils';
 
 export default function Carousel({ posts }) {
   const slideRefs = useRef([]);
@@ -11,13 +12,13 @@ export default function Carousel({ posts }) {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
   }, []);
-  
+
   const findSlideWidth = () => {
-    if(slideRefs.current[0]) {
+    if (slideRefs.current[0]) {
       const slide = slideRefs.current[0];
       const computedSlideWidth = slide.getBoundingClientRect().width;
       setSlideWidth(computedSlideWidth);
-      resetSlidePositions(computedSlideWidth)
+      resetSlidePositions(computedSlideWidth, false)
     }
   }
 
@@ -29,28 +30,24 @@ export default function Carousel({ posts }) {
     return reverse ? setSlidePositions(newPositions.reverse()) : setSlidePositions(newPositions);
   }
 
-  const moveSlide = (direction, auto=false) => {
+  const moveSlide = (direction, auto = false) => {
     let newSlideIndex = direction + activeIndex;
-    console.warn(newSlideIndex);
     if (newSlideIndex < 0) {
-      console.warn('setting to last');
       newSlideIndex = numberOfSlides - 1;
       resetSlidePositions(slideWidth, true);
       return setActiveIndex(newSlideIndex);
     }
     else if (newSlideIndex >= numberOfSlides) {
-      console.warn('setting to zero');
       newSlideIndex = 0;
-      resetSlidePositions(slideWidth);
+      resetSlidePositions(slideWidth, false);
       return setActiveIndex(newSlideIndex);
     }
 
     setActiveIndex(newSlideIndex);
-    console.warn('setting to ', newSlideIndex);
 
     let newPositions = slidePositions.map((_position, index) => {
-      if(index === newSlideIndex) {
-          return 0;
+      if (index === newSlideIndex) {
+        return 0;
       }
       return (index - newSlideIndex) * slideWidth;
     });
@@ -63,11 +60,11 @@ export default function Carousel({ posts }) {
       <div className='carousel__track-container'>
         <ul className='carousel__track'>
           {posts.map((post, index) => (
-            <li ref={ref => slideRefs.current.push(ref)} key={`carousel-slide-${index}`} style={{ left: slidePositions[index] + 'px' }} className={`carousel__slide`}>
-              <img src={post.image.url}/> 
-              <h2 className='carousel-slide-title'>{post.title}</h2>       
-              <div className='carousel-slide-overlay'></div>    
-            </li>
+            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title)}><li ref={ref => slideRefs.current.push(ref)}  style={{ left: slidePositions[index] + 'px' }} className={`carousel__slide`}>
+              <img src={post.image.url} />
+              <h2 className='carousel-slide-title'>{post.title}</h2>
+              <div className='carousel-slide-overlay'></div>
+            </li></Link>
           ))}
         </ul>
       </div>

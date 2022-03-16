@@ -10,8 +10,8 @@ export default function PostList({posts}) {
         const MAX_LENGTH = 150;
         if(post.body) {
             let bodyString = documentToHtmlString(post.body) || '';
-            let parsed = bodyString.replace(/<[^>]*>/g, ' ');
-            summary = bodyString.substring(0,MAX_LENGTH) + '...';
+            let parsed = bodyString.replaceAll(/<[^<>]+>/g, ' ');
+            summary = parsed.substring(0,MAX_LENGTH) + '...';
         }
         posts[index].summary = summary;
     })
