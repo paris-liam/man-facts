@@ -1,19 +1,17 @@
 import Layout from '../components/layout'
 import { createTagList } from '../lib/tags'
-import { generateHomePosts, getAllPostData } from '../lib/posts';
+import { generateHomePosts } from '../lib/posts';
 import Carousel from '../components/carousel';
 import PostList from '../components/postlist';
+import ThreePostShuffle from '../components/threePostShuffle';
 
 export default function Home({homePosts, tagList }) {
   const {topPosts, recentPosts, trendingPosts, popularPosts} = homePosts;
   return (
     <Layout tagList={tagList} sidePosts={topPosts} sideTitle="Top Posts">
-        <h2>Recent</h2>
         <Carousel posts={recentPosts}></Carousel>
-        <h2>Trending</h2>
-        <PostList posts={trendingPosts}></PostList>
-        <h2>Popular</h2>
-        <PostList posts={popularPosts}></PostList>
+        {/*<ThreePostShuffle title={"Trending"} posts={trendingPosts}></ThreePostShuffle>*/}
+        <PostList title="Popular" posts={popularPosts}></PostList>
     </Layout>
   )
 }

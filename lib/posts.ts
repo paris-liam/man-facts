@@ -2,7 +2,7 @@ import { createContentfulClient, formatLink, formatPostData, sortByDate } from "
 
 const TOP_POST_TAG_NAME = 'topPost';
 const NUMBER_OF_RECENT_POSTS = 5;
-const NUMBER_OF_TRENDING_POSTS = 5;
+const NUMBER_OF_TRENDING_POSTS = 10;
 const NUMBER_OF_POPULAR_POSTS = 20;
 
 const filterTopPosts = (posts) => posts.filter((post) => post.tags.includes(TOP_POST_TAG_NAME));
@@ -13,7 +13,8 @@ const filterTrendingPosts = (posts) => {
   const lastMonthDate = new Date();
   lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
   const lastMonthPosts = posts.filter((post) => new Date(post.date).getTime() - lastMonthDate.getTime() >= 0);
-  return sortByDate(lastMonthPosts.sort(() => .5 - Math.random()).splice(0, NUMBER_OF_TRENDING_POSTS));
+  const sortedTrendingPosts =  sortByDate(lastMonthPosts.sort(() => .5 - Math.random()).splice(0, NUMBER_OF_TRENDING_POSTS));
+  return [...sortedTrendingPosts, ...posts].slice(0,NUMBER_OF_TRENDING_POSTS);
 };
 
 const filterPopularPosts = (posts) => sortByDate(posts.sort(() => .5 - Math.random()).splice(0, NUMBER_OF_POPULAR_POSTS));

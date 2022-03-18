@@ -13,14 +13,12 @@ export default function Carousel({ posts }) {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
     const startAutoPlay = setTimeout(() => {
-      console.warn('timeout called');
       return setAutoPlay(true)
     }, 5000);
     return () => clearTimeout(startAutoPlay);
   }, []);
 
   useEffect(() => {
-    console.warn('setting autoplay to ', runAutoPlay)
   }, [runAutoPlay]);
 
 
@@ -46,7 +44,6 @@ export default function Carousel({ posts }) {
     if(!auto) {
       setAutoPlay(false);
     }
-    console.warn('called');
     let newSlideIndex = direction + activeIndex;
     if (newSlideIndex < 0) {
       newSlideIndex = numberOfSlides - 1;

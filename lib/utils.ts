@@ -4,6 +4,11 @@ export const sortByDate = (posts) => posts.sort((a, b) => new Date(a.date).getTi
 
 export const formatLink = (title) => title ? encodeURIComponent(title.toLowerCase().replace(/[^0-9a-zA-Z_\s]+/g, '').split(' ').slice(0, 4).join('-')) : '';
 
+export const checkValidDate = (date) => {
+    let testDate = new Date(date);
+    return testDate.getTime() === testDate.getTime();
+}
+
 export const formatAuthors = (post) => {
     if (post.fields?.authors?.length > 0) {
         return post.fields?.authors.map((author) => author.fields?.name);

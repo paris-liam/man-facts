@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function SideList({title, posts}) {
     return (
     <>
-    <h2>{title}</h2>
+    <h2 className="side-list-title">{title}</h2>
     <ul className='side-list'>
     {posts.map((post) => {
         return (
