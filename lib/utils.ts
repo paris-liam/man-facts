@@ -47,11 +47,12 @@ export const formatPostData = (allPosts: Array<any>) => sortByDate(allPosts
 export const formatAuthorData = (allAuthors) =>
     allAuthors.map((post) => {
         return {
-            name: post?.fields?.name || '',
+            title: post?.fields?.name || '',
             body: post?.fields?.aboutSection || '',
             image: post?.fields?.headshot?.fields?.file || null,
+            isAuthor: true
         }
-    });
+    }).sort((a, b) => a.title.localeCompare(b.title));
 
 export const createContentfulClient = () => {
     return createClient({

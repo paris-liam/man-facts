@@ -29,18 +29,18 @@ export default function PostList({ title, posts }: PostListProps) {
                         <li key={post.title} className='post-list-item'>
                             <Link href={'/posts/' + formatLink(post.title)}><a>
                                 {post.image ? <img className='post-list-item-image' src={post.image.url} /> : ''}
-                                <div className="post-list-item-text-container">
+                                <div className="post-list-item-text-container" style={{ marginLeft: !post.image && post.isAuthor ? '0' : 'auto' }}>
                                     <p className="post-list-item-text-body">
-                                        {post.date && post.validDate ? new Date(post.date).toLocaleString()?.split(',')[0] : ''}
-                                        {' '}by {post.authors && post.authors.map((author, index) =>
-                                            <span key={author}>{author} {index !== post.authors.length - 1 ? ',' : ''} </span>)}
+                                        {post.date && post.validDate && !post.isAuthor ? new Date(post.date).toLocaleString()?.split(',')[0] : ''}
+                                        {!post.isAuthor && ' by' } {post.authors && !post.isAuthor && post.authors.map((author, index) =>
+                                        <span key={author}>{author} {index !== post.authors.length - 1 ? ',' : ''} </span>)}
                                     </p>
                                     <h3 className="post-list-item-text-title">{post.title}</h3>
-                                    <p className="post-list-item-text-body">{post.summary}</p>
+                                    {!post.isAuthor && <p className="post-list-item-text-body">{post.summary}</p>}
                                 </div>
                             </a></Link>
                         </li>
-                    )
+            )
                 })}
-            </ul></>);
+        </ul></>);
 }

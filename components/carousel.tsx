@@ -13,13 +13,24 @@ export default function Carousel({ posts }) {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
     const startAutoPlay = setTimeout(() => {
-      return setAutoPlay(true)
+      console.warn('starting auto play with first slide')
+      setAutoPlay(false)
+      return moveSlide(+1);
     }, 5000);
     return () => clearTimeout(startAutoPlay);
   }, []);
 
   useEffect(() => {
-  }, [runAutoPlay]);
+    let moveAutoPlay = null
+    if(runAutoPlay) {
+      console.warn('calling timeout for active Index');
+      moveAutoPlay = setTimeout(() => {
+        console.warn('moving slide from auto slide');
+        return moveSlide(+1);
+      }, 5000);
+    }
+    return () => clearTimeout(moveAutoPlay);
+  }, [activeIndex])
 
 
 
@@ -40,9 +51,14 @@ export default function Carousel({ posts }) {
     return reverse ? setSlidePositions(newPositions.reverse()) : setSlidePositions(newPositions);
   }
 
-  const moveSlide = (direction, auto = false) => {
-    if(!auto) {
+  const moveSlide = (direction, buttonPress=false) => {
+    if(buttonPress) {
       setAutoPlay(false);
+      setTimeout(() => {
+        console.warn('restarting autoplay from move slide');
+        setAutoPlay(false)
+        moveSlide(1);
+      }, 5000);
     }
     let newSlideIndex = direction + activeIndex;
     if (newSlideIndex < 0) {
@@ -69,7 +85,7 @@ export default function Carousel({ posts }) {
 
   return (
     <div className='carousel'>
-      <button onClick={() => { moveSlide(1) }} className='carousel__button carousel__button--left'><i className="fa-solid fa-arrow-left"></i></button>
+      <button onClick={() => { moveSlide(1, true) }} className='carousel__button carousel__button--left'><i className="fa-solid fa-arrow-left"></i></button>
       <div className='carousel__track-container'>
         <ul className='carousel__track'>
           {posts.map((post, index) => (
@@ -81,7 +97,7 @@ export default function Carousel({ posts }) {
           ))}
         </ul>
       </div>
-      <button onClick={() => { moveSlide(-1) }} className='carousel__button carousel__button--right'><i className="fa-solid fa-arrow-right"></i></button>
+      <button onClick={() => { moveSlide(-1, true) }} className='carousel__button carousel__button--right'><i className="fa-solid fa-arrow-right"></i></button>
     </div>
   );
 }
