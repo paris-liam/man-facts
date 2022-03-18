@@ -26,7 +26,7 @@ export default function PostList({ title, posts }) {
                             <Link href={'/posts/' + formatLink(post.title)}><a>
                                 {post.image ? <img className='post-list-item-image' src={post.image.url} /> : ''}
                                 <div className="post-list-item-text-container">
-                                    <p>
+                                    <p className="post-list-item-text-body">
                                         {post.date && post.validDate ? new Date(post.date).toLocaleString()?.split(',')[0] : ''}
                                         {' '}by {post.authors && post.authors.map((author, index) =>
                                             <span key={author}>{author} {index !== post.authors.length - 1 ? ',' : ''} </span>)}

@@ -65,6 +65,7 @@ header {
     align-items: end;
     margin-left: 0;
     &.section-links {
+      flex-flow: row wrap;
       width: 80%;
       li {
         margin-right: 1rem;
