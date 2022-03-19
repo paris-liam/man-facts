@@ -8,20 +8,20 @@ export default function Carousel({ posts }) {
   const [slideWidth, setSlideWidth] = useState(0);
   const numberOfSlides = posts.length || 0;
   const [slidePositions, setSlidePositions] = useState(Array(numberOfSlides).fill(0));
-  const [runAutoPlay, setAutoPlay] = useState(false);
+  //const [runAutoPlay, setAutoPlay] = useState(false);
   useEffect(() => {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
-    const startAutoPlay = setTimeout(() => {
+    /*const startAutoPlay = setTimeout(() => {
       console.warn('starting auto play with first slide')
       setAutoPlay(false)
       return moveSlide(+1);
-    }, 5000);
-    return () => clearTimeout(startAutoPlay);
+    }, 5000);*/
+    //return () => clearTimeout(startAutoPlay);
   }, []);
 
   useEffect(() => {
-    let moveAutoPlay = null
+    /*let moveAutoPlay = null
     if(runAutoPlay) {
       console.warn('calling timeout for active Index');
       moveAutoPlay = setTimeout(() => {
@@ -29,7 +29,7 @@ export default function Carousel({ posts }) {
         return moveSlide(+1);
       }, 5000);
     }
-    return () => clearTimeout(moveAutoPlay);
+    return () => clearTimeout(moveAutoPlay);*/
   }, [activeIndex])
 
 
@@ -52,14 +52,14 @@ export default function Carousel({ posts }) {
   }
 
   const moveSlide = (direction, buttonPress=false) => {
-    if(buttonPress) {
+    /*if(buttonPress) {
       setAutoPlay(false);
       setTimeout(() => {
         console.warn('restarting autoplay from move slide');
         setAutoPlay(false)
         moveSlide(1);
       }, 5000);
-    }
+    }*/
     let newSlideIndex = direction + activeIndex;
     if (newSlideIndex < 0) {
       newSlideIndex = numberOfSlides - 1;
@@ -89,7 +89,7 @@ export default function Carousel({ posts }) {
       <div className='carousel__track-container'>
         <ul className='carousel__track'>
           {posts.map((post, index) => (
-            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title)}><li ref={ref => slideRefs.current.push(ref)} style={{ left: slidePositions[index] + 'px' }} className={`carousel__slide`}>
+            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title)}><li style={{zIndex: index+1}}ref={ref => slideRefs.current.push(ref)} style={{ left: slidePositions[index] + 'px' }} className={`carousel__slide`}>
               <img src={post.image.url} />
               <h2 className='carousel-slide-title'>{post.title}</h2>
               <div className='carousel-slide-overlay'></div>
