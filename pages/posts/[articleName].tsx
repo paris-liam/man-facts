@@ -20,14 +20,16 @@ export default function Post({ postData, tagList, sidePosts, req }) {
       {image && image.url && <img src={image.url} />}
       <h1>{title}</h1>
       <h4>
-        {date ? new Date(date).toLocaleString()?.split(',')[0] : ''} 
+        {date ? new Date(date).toLocaleString()?.split(',')[0] : ''}{' '} 
       {authors && (
         <>
-          <span>by</span>
-          {authors.map((author) => (
-            <Link key={author} href={'/authors/' + formatAuthorLink(author)}>
+          <span>by</span>{' '}
+          {authors.map((author,index) => (
+            <><Link key={author} href={'/authors/' + formatAuthorLink(author)}>
               <a className='author-link'>{author}</a>
             </Link>
+            {index === authors.length - 1 ? '' : ','}{' '}
+            </>
           ))}
         </>
       )}
