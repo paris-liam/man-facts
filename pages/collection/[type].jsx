@@ -38,10 +38,8 @@ export default function Collection({ sidePosts, postData, authorData, tagList, t
     results = findTaggedArticles(postData, q);
   } else {
     searchType = `Search Results for: ${q}`; 
-    console.warn([...postData,...authorData]);
     results = performFuseSearch([...postData,...authorData], q).map((post) => post.item);
   }
-  console.warn(results);
   return (
   <Layout tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
     <h1 className="collection-header">{searchType}</h1>

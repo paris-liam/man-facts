@@ -13,7 +13,6 @@ export default function Carousel({ posts }) {
     window.addEventListener('resize', findSlideWidth);
     findSlideWidth();
     /*const startAutoPlay = setTimeout(() => {
-      console.warn('starting auto play with first slide')
       setAutoPlay(false)
       return moveSlide(+1);
     }, 5000);*/
@@ -23,9 +22,7 @@ export default function Carousel({ posts }) {
   useEffect(() => {
     /*let moveAutoPlay = null
     if(runAutoPlay) {
-      console.warn('calling timeout for active Index');
       moveAutoPlay = setTimeout(() => {
-        console.warn('moving slide from auto slide');
         return moveSlide(+1);
       }, 5000);
     }
@@ -55,7 +52,6 @@ export default function Carousel({ posts }) {
     /*if(buttonPress) {
       setAutoPlay(false);
       setTimeout(() => {
-        console.warn('restarting autoplay from move slide');
         setAutoPlay(false)
         moveSlide(1);
       }, 5000);

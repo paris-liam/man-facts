@@ -32,9 +32,7 @@ export default function ThreePostShuffle({ posts, title }) {
     }, [currentIndex]);
 
     useEffect(() => {
-        console.warn(displayedPosts[0].title);
-        console.warn(displayedPosts[1].title);
-        console.warn(displayedPosts[2].title);
+
 
     }, [displayedPosts])
 

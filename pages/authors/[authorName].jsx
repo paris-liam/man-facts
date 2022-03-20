@@ -23,7 +23,6 @@ export async function getStaticProps({ params }) {
 
 export default function Author({ authorData, tagList, sidePosts }) {
   let { title, image, body, articleList } = authorData;
-  console.warn(authorData);
   const router = useRouter();
   const shareLink = `https://man-facts.org${router.asPath}`;
   return (
