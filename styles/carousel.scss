@@ -1,6 +1,6 @@
 .carousel {
     width: 75vw;
-    height: calc(75vw * .5625);
+    height: 75vw;
     margin: 0 auto;
     position: relative;
 
@@ -18,11 +18,6 @@
     height: 100%;
     transition: transform 250ms ease-in;
     overflow: hidden;
-    overflow-x: scroll;
-
-    @media(min-width: $desktop-breakpoint) {
-        overflow-x: hidden;
-    }
 }
 
 .carousel__track-container {
@@ -34,17 +29,21 @@
 .carousel__slide {
     position: absolute;
     width: 100%;
+    height: 100%;
     top: 0;
 
     cursor: pointer;
 
     img {
         width: 100%;
-        height: calc(50vw * .5625);
+        height: 75vw;
         object-fit: cover;
+
+        @media(min-width: $desktop-breakpoint) {
+            height: calc(50vw * .5625);
+        }
         
     }
-
     transition: all 250ms ease-in;
 
     .carousel-slide-title {
@@ -56,8 +55,12 @@
         padding-left: 10px;
         padding-right: 10px;
 
-        --min: 1.5rem;
+        --min: 1.25rem;
         --val: 3vw;
+
+        @media(min-width: $desktop-breakpoint) {
+            bottom: 1%;        
+        }
     }
 
     .carousel-slide-overlay {
@@ -79,10 +82,10 @@
 .carousel__button {
     z-index: 2;
     position: absolute;
-    top: 0;
-    height: 100%;
+    top: 40%;
+    height: auto;
     outline: none;
-    background: black;
+    background: none;
     color: $blue;
     border: none;
     font-size: 2rem;

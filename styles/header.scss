@@ -96,7 +96,7 @@ header {
     justify-content: space-between;
     flex-direction: row;
     height: auto;
-    overflow: auto;
+    overflow: hidden;
   }
 
   body.mobile-menu-active & {
@@ -148,7 +148,7 @@ header {
     font-size: 16px;
     outline: none;
     border: none;
-    width: 90%;
+    width: 85%;
   }
 
   button {

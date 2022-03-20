@@ -12,6 +12,7 @@ export default function Header({ headerHeight = 100, tagList = [] }) {
       pathname: '/collection/search',
       query: {q: inputRef.current.value?.trim() },
     })
+    setNav(false);
   }
 
 
