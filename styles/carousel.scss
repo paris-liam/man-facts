@@ -16,7 +16,7 @@
     list-style: none;
     position: relative;
     height: 100%;
-    transition: transform 250ms ease-in;
+    transition: transform 500ms ease-in;
     overflow: hidden;
 }
 
@@ -44,7 +44,7 @@
         }
         
     }
-    transition: all 250ms ease-in;
+    transition: all 500ms ease-in;
 
     .carousel-slide-title {
         position: absolute;
