@@ -13,7 +13,7 @@ const formatAuthorLink = (name) => {
 
 export default function Post({ postData, tagList, sidePosts, req }) {
   const { image, title, date, authors, body } = postData || '';
-  validDate = checkValidDate(date);
+  const validDate = checkValidDate(date);
   const router = useRouter();
   const shareLink = `https://man-facts.org${router.asPath}`;
   return (<Layout tagList={tagList} sidePosts={sidePosts} sideTitle="Related Posts">
