@@ -10,8 +10,8 @@ return formatAuthorData(authorData.items);
 
 export async function generateAuthorPaths() {
   const authorData = await getAllAuthorData();
-  return authorData.filter((author) => author.name).map((author) => {
-    return '/authors/' + formatLink(author.name)
+  return authorData.filter((author) => author.title).map((author) => {
+    return '/authors/' + formatLink(author.title)
   })
 }
 
@@ -36,8 +36,8 @@ export async function getAuthorData(authorName) {
   const allAuthors = await getAllAuthorData();
   let allPosts = await getAllPostData();
 
-  let authorData =  allAuthors.find((item) => {
-    return authorName === formatLink(item.name)
+  let authorData = allAuthors.find((item) => {
+    return authorName === formatLink(item.title)
   });
   let articleListFiltered = allPosts.filter((article) => { 
     return article.authors?.some((author) => formatLink(author) === authorName)

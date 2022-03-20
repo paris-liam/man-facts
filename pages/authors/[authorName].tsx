@@ -22,20 +22,21 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Author({ authorData, tagList, sidePosts }) {
-  let { name, image, body, articleList } = authorData;
+  let { title, image, body, articleList } = authorData;
+  console.warn(authorData);
   const router = useRouter();
   const shareLink = `https://man-facts.org${router.asPath}`;
   return (
     <Layout tagList={tagList} sidePosts={sidePosts} sideTitle="Top Posts">
       <div className='container-border'><img src={image?.url} />
-        <h1>{name}</h1>
+        <h1>{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(body) }}></div>
         <div>
-          <h2>Articles by {name}:</h2>
+          {articleList.length && <h2>Articles by {title}</h2> }
           <ul>
             {articleList.map((article) => {
               return (<li key={article.name}>
-                <Link href={'/posts/'+article.link}><a>
+                <Link href={{ pathname: '/update/' + article.link}}><a>
                   <h3>{article.name}</h3>
                 </a></Link>
               </li>)
