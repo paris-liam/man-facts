@@ -2,12 +2,8 @@ import { checkValidDate, formatLink } from "../lib/utils";
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Link from 'next/link';
 
-interface PostListProps {
-    title?: string;
-    posts: Array<any>
-}
 
-export default function PostList({ title, posts }: PostListProps) {
+export default function PostList({ title, posts }) {
     posts.forEach((post, index) => {
         let summary = '';
         const MAX_LENGTH = 150;

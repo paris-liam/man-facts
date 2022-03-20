@@ -6,7 +6,7 @@ import Router from 'next/router'
 export default function Header({ headerHeight = 100, tagList = [] }) {
 
   const [searchInputActive, toggleSearchInput] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef(null);
   const performSearch = () => {
     Router.push({
       pathname: '/collection/search',
