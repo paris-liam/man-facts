@@ -43,7 +43,7 @@ export default function Header({ headerHeight = 100, tagList = [] }) {
           <li key={tag.id}><Link href={`/collection/tags?q=${tag.id}`}><a><h3>{tag.displayName}</h3></a></Link></li>
         ))}
         <li className='about-header-link'><Link href="/about-us"><a><h3>About Us</h3></a></Link></li>
-        <li className='about-header-link'><Link href="/collection/authors"><a><h3>Brave Patriots</h3></a></Link></li>
+        <li className='about-header-link'><Link href="/collection/authors"><a><h3>Authors</h3></a></Link></li>
         <li className='about-header-link'><Link href="/write-for-us"><a><h3>Write for us</h3></a></Link></li>
       </ul>
       <ul className="header-list social-links">
