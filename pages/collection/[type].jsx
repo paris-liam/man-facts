@@ -42,7 +42,7 @@ export default function Collection({ sidePosts, postData, authorData, tagList, t
     results = performFuseSearch([...postData,...authorData], q).map((post) => post.item);
   }
   return (
-  <Layout description={type}  tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
+  <Layout description={searchType}  tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
     <h1 className="collection-header">{searchType}</h1>
     <PostList posts={results}></PostList>
     </Layout>)
