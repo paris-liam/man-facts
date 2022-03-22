@@ -4,7 +4,8 @@ import PostList from '../../components/postlist';
 import { createTagList } from '../../lib/tags';
 import { getAllPostData, getTopPosts } from '../../lib/posts';
 import { sortByDate } from '../../lib/utils';
-import {performFuseSearch} from '../../lib/search-utils'
+import {performFuseSearch} from '../../lib/search-utils';
+import * as logo from '../../public/images/logo.png';
 export async function getServerSideProps({query}) {  
   const postData = await getAllPostData();
   const authorData = await getAllAuthorData();
@@ -30,7 +31,7 @@ export default function Collection({ sidePosts, postData, authorData, tagList, t
   let results = [];
   let searchType = '';
   if(type === 'authors') {
-    searchType = 'Brave Patriots';
+    searchType = 'Authors';
     results = authorData
   }
   else if(type === 'tags') {
@@ -41,7 +42,7 @@ export default function Collection({ sidePosts, postData, authorData, tagList, t
     results = performFuseSearch([...postData,...authorData], q).map((post) => post.item);
   }
   return (
-  <Layout tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
+  <Layout description={type}  tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
     <h1 className="collection-header">{searchType}</h1>
     <PostList posts={results}></PostList>
     </Layout>)

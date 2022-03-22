@@ -3,10 +3,9 @@ import { getRelatedPosts, generatePostPaths, getPostData, } from '../../lib/post
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { createTagList } from '../../lib/tags'
 import Link from 'next/link';
-import { checkValidDate, formatLink } from '../../lib/utils';
+import { checkValidDate} from '../../lib/utils';
 import { useRouter } from 'next/router'
-import absoluteUrl from 'next-absolute-url';
-
+import * as logo from '../../public/images/logo.png';
 const formatAuthorLink = (name) => {
   return !name ? '' : name.toLowerCase().split(' ').join('-');
 }
@@ -16,7 +15,7 @@ export default function Post({ postData, tagList, sidePosts, req }) {
   const validDate = checkValidDate(date);
   const router = useRouter();
   const shareLink = `https://man-facts.org${router.asPath}`;
-  return (<Layout tagList={tagList} sidePosts={sidePosts} sideTitle="Related Posts">
+  return (<Layout description={title} shareImage={image?.url} tagList={tagList} sidePosts={sidePosts} sideTitle="Related Posts">
     <div className='container-border post-container'>
       {image && image.url && <img src={image.url} />}
       <h1>{title}</h1>

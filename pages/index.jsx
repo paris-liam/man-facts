@@ -4,11 +4,11 @@ import { generateHomePosts } from '../lib/posts';
 import Carousel from '../components/carousel';
 import PostList from '../components/postlist';
 import ThreePostShuffle from '../components/threePostShuffle';
-
+import * as logo from '../public/images/logo.png';
 export default function Home({homePosts, tagList }) {
   const {topPosts, recentPosts, trendingPosts, popularPosts} = homePosts;
   return (
-    <Layout tagList={tagList} sidePosts={topPosts} sideTitle="Top Posts">
+    <Layout description={"Home"}   tagList={tagList} sidePosts={topPosts} sideTitle="Top Posts">
         <Carousel posts={recentPosts}></Carousel>
         {/*<ThreePostShuffle title={"Trending"} posts={trendingPosts}></ThreePostShuffle>*/}
         <PostList title="Popular" posts={popularPosts}></PostList>

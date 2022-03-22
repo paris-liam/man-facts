@@ -3,10 +3,8 @@ import styles from './layout.module.css'
 import { useState, useEffect } from 'react'
 import Header from './header';
 import SideList from './sidelist';
-import Link from 'next/link';
-export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, tagList, sidePosts, sideTitle }) {
+export default function Layout({ children, tagList, sidePosts, sideTitle, description, shareImage='/images/logo.png' }) {
   const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
     document.querySelector('body').classList.add('no-scroll');
@@ -29,18 +27,16 @@ export default function Layout({ children, tagList, sidePosts, sideTitle }) {
       <div id='header-placeholder' style={{ 'height': `${headerHeight}px` }}></div>
       <div className={styles.container}>
         <Head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/images/logo.png" />
           <meta
             name="description"
-            content="Learn how to build a personal website using Next.js"
+            content={description ? description : " Man Facts: The only comedy source BY men FOR men"}
           />
           <meta
             property="og:image"
-            content={`https://og-image.vercel.app/${encodeURI(
-              siteTitle
-            )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+            content={shareImage}
           />
-          <meta name="og:title" content={siteTitle} />
+          <meta name="og:title" content={description ? description : "Man Facts"} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         </Head>

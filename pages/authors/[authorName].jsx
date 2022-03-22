@@ -6,7 +6,7 @@ import { createTagList } from '../../lib/tags';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { generateHomePosts, getTopPosts } from '../../lib/posts';
-
+import * as logo from '../../public/images/logo.png';
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
   const tagList = await createTagList();
@@ -26,7 +26,7 @@ export default function Author({ authorData, tagList, sidePosts }) {
   const router = useRouter();
   const shareLink = `https://man-facts.org${router.asPath}`;
   return (
-    <Layout tagList={tagList} sidePosts={sidePosts} sideTitle="Top Posts">
+    <Layout description={title} shareImage={image?.url} tagList={tagList} sidePosts={sidePosts} sideTitle="Top Posts">
       <div className='container-border'><img src={image?.url} />
         <h1>{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(body) }}></div>
