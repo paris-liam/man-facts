@@ -12,7 +12,6 @@ export default function Header({ headerHeight = 100, tagList = [], activeLink = 
       pathname: '/collection/search',
       query: { q: inputRef.current.value?.trim() },
     })
-    setNav(false);
   }
 
 
@@ -22,8 +21,14 @@ export default function Header({ headerHeight = 100, tagList = [], activeLink = 
       document.querySelector('body').classList.add('mobile-menu-active');
     else
       document.querySelector('body').classList.remove('mobile-menu-active');
-  });
-  console.warn(activeLink);
+  },[navActive]);  
+
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => {
+      setNav(false);
+    })
+  }, [])
+
   return (<header>
     <div className="mobile-menu-container">
       <Link href="/"><a><div className='logo-container'>
