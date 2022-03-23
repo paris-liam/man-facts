@@ -3,14 +3,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as logo from '../public/images/logo.png';
 import Router from 'next/router'
-export default function Header({ headerHeight = 100, tagList = [] }) {
+export default function Header({ headerHeight = 100, tagList = [], activeLink = '' }) {
 
   const [searchInputActive, toggleSearchInput] = useState(false);
   const inputRef = useRef(null);
   const performSearch = () => {
     Router.push({
       pathname: '/collection/search',
-      query: {q: inputRef.current.value?.trim() },
+      query: { q: inputRef.current.value?.trim() },
     })
     setNav(false);
   }
@@ -23,7 +23,7 @@ export default function Header({ headerHeight = 100, tagList = [] }) {
     else
       document.querySelector('body').classList.remove('mobile-menu-active');
   });
-
+  console.warn(activeLink);
   return (<header>
     <div className="mobile-menu-container">
       <Link href="/"><a><div className='logo-container'>
@@ -40,11 +40,13 @@ export default function Header({ headerHeight = 100, tagList = [] }) {
     <div className="menu-container">
       <ul className="header-list section-links">
         {tagList.map((tag, index) => (
-          <li key={tag.id}><Link href={`/collection/tags?q=${tag.id}`}><a><h3>{tag.displayName}</h3></a></Link></li>
+          <li key={tag.id}><Link href={`/collection/tags?q=${tag.id}`}><a className={activeLink === tag.id ? 'active-link' : ''}><h3>{tag.displayName}</h3></a></Link></li>
         ))}
-        <li className='about-header-link'><Link href="/about-us"><a><h3>About Us</h3></a></Link></li>
-        <li className='about-header-link'><Link href="/collection/authors"><a><h3>Authors</h3></a></Link></li>
-        <li className='about-header-link'><Link href="/write-for-us"><a><h3>Write for us</h3></a></Link></li>
+        <ul className="about-link-container">
+          <li className={'about-header-link'}><Link href="/about-us"><a className={activeLink === 'about-us' ? 'active-link' : ''}><h3>About Us</h3></a></Link></li>
+          <li className={'about-header-link'}><Link href="/collection/authors"><a className={activeLink === 'authors' ? 'active-link' : ''}><h3>Authors</h3></a></Link></li>
+          <li className={'about-header-link'}><Link href="/write-for-us"><a className={activeLink === 'write-for-us' ? 'active-link' : ''}><h3>Write for us</h3></a></Link></li>
+        </ul>
       </ul>
       <ul className="header-list social-links">
         <li><a href="https://www.facebook.com/ManFacts7/" target="_blank" rel="noreferrer"><i className="fb"></i></a></li>

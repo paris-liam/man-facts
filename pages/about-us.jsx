@@ -6,7 +6,7 @@ import { getTopPosts } from '../lib/posts';
 import * as logo from '../public/images/logo.png';
 export default function AboutUs({ tagList, sidePosts, aboutUsContent }) {
     const body = aboutUsContent.items[0].fields.aboutUsContent
-  return (<Layout description={"About Us"}  tagList={tagList} sidePosts={sidePosts} sideTitle="Top Posts"> 
+  return (<Layout description={"About Us"}  activeLink="about-us" tagList={tagList} sidePosts={sidePosts} sideTitle="Top Posts"> 
     <div className='container-border'>
     <h1>About Us</h1>
     <div dangerouslySetInnerHTML={{__html: documentToHtmlString(body)}}></div></div>

@@ -3,8 +3,6 @@ import { createTagList } from '../lib/tags'
 import { generateHomePosts } from '../lib/posts';
 import Carousel from '../components/carousel';
 import PostList from '../components/postlist';
-import ThreePostShuffle from '../components/threePostShuffle';
-import * as logo from '../public/images/logo.png';
 export default function Home({homePosts, tagList }) {
   const {topPosts, recentPosts, trendingPosts, popularPosts} = homePosts;
   return (

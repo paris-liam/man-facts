@@ -30,19 +30,22 @@ export const getTagName = (tagList, q) => tagList.find(tag => tag.id === q).disp
 export default function Collection({ sidePosts, postData, authorData, tagList, type, q}) {
   let results = [];
   let searchType = '';
+  let activelink = '';
   if(type === 'authors') {
     searchType = 'Authors';
     results = authorData
+    activelink = type;
   }
   else if(type === 'tags') {
     searchType = getTagName(tagList, q);
     results = findTaggedArticles(postData, q);
+    activelink = q;
   } else {
     searchType = `Search Results for: ${q}`; 
     results = performFuseSearch([...postData,...authorData], q).map((post) => post.item);
   }
   return (
-  <Layout description={searchType}  tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
+  <Layout description={searchType}  activeLink={activelink} tagList={tagList} sidePosts={sidePosts} sideTitle={"Top Posts"}> 
     <h1 className="collection-header">{searchType}</h1>
     <PostList posts={results}></PostList>
     </Layout>)

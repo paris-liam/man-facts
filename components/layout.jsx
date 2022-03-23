@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Header from './header';
 import SideList from './sidelist';
 
-export default function Layout({ children, tagList, sidePosts, sideTitle, description, shareImage='/images/logo.png' }) {
+export default function Layout({ children, activeLink = '', tagList, sidePosts, sideTitle, description, shareImage='/images/logo.png' }) {
   const [headerHeight, setHeaderHeight] = useState(100);
   useEffect(() => {
     document.querySelector('body').classList.add('no-scroll');
@@ -21,7 +21,7 @@ export default function Layout({ children, tagList, sidePosts, sideTitle, descri
     window.addEventListener("resize", resizeHeader);
     return () => window.removeEventListener("scroll", checkScroll);
   }, []);
-
+  
   return (
     <>
       <div id='header-placeholder' style={{ 'height': `${headerHeight}px` }}></div>
@@ -40,7 +40,7 @@ export default function Layout({ children, tagList, sidePosts, sideTitle, descri
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         </Head>
-        <Header headerHeight={headerHeight} tagList={tagList}></Header>
+        <Header activeLink={activeLink} headerHeight={headerHeight} tagList={tagList}></Header>
         {/*<ul>
               <li><Link  href="/"><a>About</a></Link></li>
               <li><Link  href="/collection/authors"><a>Brave Patriots</a></Link></li>

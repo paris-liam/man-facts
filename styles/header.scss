@@ -60,6 +60,14 @@ header {
     --max: 1.5rem;
   }
 
+  li {
+    margin-right: 1rem;
+  }
+  a.active-link {
+    color: white;
+    text-decoration: underline;
+  }
+
   @media (min-width: $desktop-breakpoint) {
     flex-direction: row;
     align-items: end;
@@ -67,16 +75,17 @@ header {
     &.section-links {
       flex-flow: row wrap;
       width: 80%;
-      li {
-        margin-right: 1rem;
-        color: white;
-      }
     }
     &.social-links {
       width: 20%;
       justify-content: space-evenly;
     }
   }
+}
+
+.active-link {
+  color: white;
+  text-decoration: underline;
 }
 
 .menu-container {
@@ -175,6 +184,11 @@ header {
   }
 }
 
+.active-link {
+  color: white;
+  text-decoration: underline;
+}
+
 .hide-nav {
   transform: translateY(-120%!important);
   -webkit-transform: translateY(-120%) !important;
@@ -200,6 +214,16 @@ header {
     display: flex;
     height: 100vh;
     width: auto;
+  }
+}
+
+.about-link-container {
+  display: flex;
+  flex-flow: column;
+  padding: 0 1rem;
+  border: 1px solid $blue;
+  @include breakpoint($desktop-breakpoint) {
+    flex-flow: row;
   }
 }
 
