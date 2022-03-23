@@ -61,12 +61,15 @@ export default function Header({ headerHeight = 100, tagList = [], activeLink = 
           {!searchInputActive ? <i className='fa fa-search'></i> : <i className='fa fa-close'></i>}
         </button></li>
       </ul>
-      <div className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`} style={{ top: `${headerHeight}px` }}>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        performSearch();
+      }}className={`search-input-container ${searchInputActive ? 'search-input-active' : ''}`} style={{ top: `${headerHeight}px` }}>
         <input ref={inputRef} type='text' />
-        <button onClick={() => { performSearch() }}>
+        <button>
           <i className='fa fa-search'></i>
         </button>
-      </div>
+      </form>
     </div>
   </header>);
 }
