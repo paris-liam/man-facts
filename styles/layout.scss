@@ -9,7 +9,7 @@
 .main-container {
   display: block;
   margin: auto;
-  max-width: 900px;
+  max-width: 1029px;
   @include breakpoint($desktop-breakpoint) {
     margin-right: 30%;
   }
