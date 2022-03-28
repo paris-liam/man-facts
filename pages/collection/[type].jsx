@@ -35,6 +35,10 @@ export default function Collection({ sidePosts, postData, authorData, tagList, t
     searchType = 'Authors';
     results = authorData
     activelink = type;
+  } else if (type === 'archives') {
+    searchType = 'Archives';
+    results = postData;
+    activelink = type;
   }
   else if(type === 'tags') {
     searchType = getTagName(tagList, q);
