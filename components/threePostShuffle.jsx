@@ -33,7 +33,7 @@ export default function ThreePostShuffle({ posts, title }) {
 
     useEffect(() => {
 
-
+        console.warn(displayedPosts);
     }, [displayedPosts])
 
     function moveShuffle(direction) {
@@ -47,9 +47,10 @@ export default function ThreePostShuffle({ posts, title }) {
     }
 
     return (
+        <>
         <div className='three-post-shuffle'>
             <div className='three-post-shuffle-title-row'>
-                <h3 className='three-post-shuffle-title-row-title'>{title}</h3>
+                <h2 className="three-post-shuffle-title">{title}</h2>
                 <div className="three-post-shuffle-title-row-button-container">
                     <button onClick={() => { moveShuffle(1) }} className='three-post-shuffle-button'><i className="fa-solid fa-arrow-left"></i></button>
                     <button onClick={() => { moveShuffle(-1) }} className='three-post-shuffle-button'><i className="fa-solid fa-arrow-right"></i></button>
@@ -67,5 +68,6 @@ export default function ThreePostShuffle({ posts, title }) {
                 </div>)}
             </div>
         </div>
+        </>
     );
 }

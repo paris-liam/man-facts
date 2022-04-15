@@ -1,0 +1,29 @@
+.three-post-shuffle {
+    list-style: none;
+    border: 2px solid;
+    border-image: linear-gradient(to right, $pink, $blue) 1;
+    padding: 1rem;
+    width: 80%;
+    margin: auto;
+    margin-right: none;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    min-height: 30vh;
+}
+
+.three-post-shuffle-title {
+    color: $blue;
+}
+
+.three-post-shuffle-title-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.three-post-shuffle-button {
+    background: none;
+    outline: none;
+    border: 1px solid $pink;
+    color: $blue;
+    margin-right: 1rem;
+}
