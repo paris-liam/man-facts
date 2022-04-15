@@ -3,7 +3,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Link from 'next/link';
 
 
-export default function PostList({ title, posts }) {
+export default function PostList({ title, posts, showMore }) {
     posts.forEach((post, index) => {
         let summary = '';
         const MAX_LENGTH = 150;
@@ -38,5 +38,7 @@ export default function PostList({ title, posts }) {
                         </li>
             )
                 })}
-        </ul></>);
+        </ul>
+        {showMore && <Link href="/collection/archives"><a>See More Posts</a></Link>}
+        </>);
 }

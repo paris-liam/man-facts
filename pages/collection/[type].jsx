@@ -2,7 +2,7 @@ import Layout from '../../components/layout'
 import { getAllAuthorData } from '../../lib/authors';
 import PostList from '../../components/postlist';
 import { createTagList } from '../../lib/tags';
-import { getAllPostData, getTopPosts } from '../../lib/posts';
+import { generateHomePosts, getAllPostData } from '../../lib/posts';
 import { sortByDate } from '../../lib/utils';
 import {performFuseSearch} from '../../lib/search-utils';
 import * as logo from '../../public/images/logo.png';
@@ -10,13 +10,13 @@ export async function getServerSideProps({query}) {
   const postData = await getAllPostData();
   const authorData = await getAllAuthorData();
   const tagList = await createTagList();
-  const sidePosts = await getTopPosts();
+  const { popularPosts } = await generateHomePosts();
   return {
     props: {
       postData,
       authorData,
       tagList,
-      sidePosts,
+      sidePosts: popularPosts,
       type: query.type,
       q: query.q ? query.q : null
     }

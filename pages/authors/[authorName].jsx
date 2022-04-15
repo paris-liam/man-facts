@@ -5,18 +5,18 @@ import Header from '../../components/header';
 import { createTagList } from '../../lib/tags';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { generateHomePosts, getTopPosts } from '../../lib/posts';
+import { generateHomePosts } from '../../lib/posts';
 import * as logo from '../../public/images/logo.png';
 export async function getStaticProps({ params }) {
   const authorData = await getAuthorData(params.authorName);
   const tagList = await createTagList();
-  const sidePosts = await getTopPosts();
+  const { popularPosts } = await generateHomePosts();
 
   return {
     props: {
       authorData,
       tagList,
-      sidePosts
+      sidePosts: popularPosts
     }
   }
 }

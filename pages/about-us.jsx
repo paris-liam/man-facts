@@ -2,7 +2,7 @@ import Layout from '../components/layout'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { getAboutUsData } from '../lib/miscData';
 import { createTagList } from '../lib/tags';
-import { getTopPosts } from '../lib/posts';
+import { generateHomePosts } from '../lib/posts';
 import * as logo from '../public/images/logo.png';
 export default function AboutUs({ tagList, sidePosts, aboutUsContent }) {
     const body = aboutUsContent.items[0].fields.aboutUsContent
@@ -16,12 +16,12 @@ export default function AboutUs({ tagList, sidePosts, aboutUsContent }) {
 export async function getStaticProps() {
   const aboutUsContent = await getAboutUsData();
   const tagList = await createTagList();
-  const sidePosts = await getTopPosts();
+  const { popularPosts } = await generateHomePosts();
   return {
     props: {
         aboutUsContent,
         tagList,
-        sidePosts
+        sidePosts: popularPosts
     }
   }
 }
