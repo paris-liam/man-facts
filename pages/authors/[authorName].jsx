@@ -35,7 +35,7 @@ export default function Author({ authorData, tagList, sidePosts }) {
           <ul>
             {articleList.map((article) => {
               return (<li key={article.name}>
-                <Link href={{ pathname: '/update/' + article.link}}><a>
+                <Link href={{ pathname: '/posts/' + article.link}}><a>
                   <h3>{article.name}</h3>
                 </a></Link>
               </li>)
