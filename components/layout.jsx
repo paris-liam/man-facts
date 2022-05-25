@@ -27,7 +27,6 @@ export default function Layout({ children, activeLink = '', tagList, sidePosts, 
       <div id='header-placeholder' style={{ 'height': `${headerHeight}px` }}></div>
       <div className={styles.container}>
         <Head>
-          <!-- Global site tag (gtag.js) - Google Analytics -->
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DTSSRSQ4C"></script>
           <script>
             window.dataLayer = window.dataLayer || [];
