@@ -3,6 +3,7 @@ import styles from './layout.module.css'
 import { useState, useEffect } from 'react'
 import Header from './header';
 import SideList from './sidelist';
+import Script from 'next/script';
 
 export default function Layout({ children, activeLink = '', tagList, sidePosts, sideTitle, description, shareImage='/images/logo.png' }) {
   const [headerHeight, setHeaderHeight] = useState(100);
@@ -27,14 +28,6 @@ export default function Layout({ children, activeLink = '', tagList, sidePosts, 
       <div id='header-placeholder' style={{ 'height': `${headerHeight}px` }}></div>
       <div className={styles.container}>
         <Head>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DTSSRSQ4C"></script>
-          <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-2DTSSRSQ4C');
-          </script>
           <link rel="icon" href="/images/logo.png" />
           <meta
             name="description"
@@ -55,6 +48,19 @@ export default function Layout({ children, activeLink = '', tagList, sidePosts, 
               <li><Link  href="/"><a>Write for us</a></Link></li>
             </ul>*/}
         <main className="main-container">
+        <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-2DTSSRSQ4C"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'GA_MEASUREMENT_ID');
+        `}
+      </Script>
           {children}
         </main>
         
