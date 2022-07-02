@@ -29,17 +29,15 @@ export default function Layout({ children, activeLink = '', tagList, sidePosts, 
       <div className={styles.container}>
         <Head>
           <link rel="icon" href="/images/logo.png" />
-          <meta
-            name="description"
-            content={description ? description : " Man Facts: The only comedy source BY men FOR men"}
-          />
-          <meta
-            property="og:image"
-            content={shareImage}
-          />
-          <meta name="og:title" content={description ? description : "Man Facts"} />
-          <meta name="twitter:card" content="summary_large_image" />
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+          <meta name="description" content={description ? description : " Man Facts: The only comedy source BY men FOR men"} />
+          <meta name="og:image" content={'http:'+shareImage} />
+          <meta name="og:title" content={description ? description : "Man Facts"} />
+
+          <meta name="twitter:title" content={description ? description : "Man Facts"}/>
+          <meta name="twitter:description" content={description ? description : " Man Facts: The only comedy source BY men FOR men"}/>
+          <meta name="twitter:image" content={'http:'+shareImage}/>
+          <meta name="twitter:card" content="summary_large_image"></meta>
         </Head>
         <Header activeLink={activeLink} headerHeight={headerHeight} tagList={tagList}></Header>
         {/*<ul>
