@@ -31,11 +31,6 @@ export default function ThreePostShuffle({ posts, title }) {
         }
     }, [currentIndex]);
 
-    useEffect(() => {
-
-        console.warn(displayedPosts);
-    }, [displayedPosts])
-
     function moveShuffle(direction) {
         let newIndex = currentIndex + (direction * 3);
         if (newIndex <= -2) {
@@ -57,7 +52,7 @@ export default function ThreePostShuffle({ posts, title }) {
                 </div>
             </div>
             <div className="three-post-shuffle-post-container">
-                {displayedPosts.map((post,index) => <div key={displayedPosts[0].title} className={`${index === 0 ? 'shuffle-item-large' : 'shuffle-item-small'}`}><Link href={'/posts/' + formatLink(displayedPosts[0].title)}><a>
+                {displayedPosts.map((post,index) => <div key={displayedPosts[0].title} className={`${index === 0 ? 'shuffle-item-large' : 'shuffle-item-small'}`}><Link href={'/posts/' + formatLink(displayedPosts[0].title, true)}><a>
                     {displayedPosts[0].image ? <img className='post-list-item-image' src={displayedPosts[0].image.url} /> : ''}
                     <div className="post-list-item-text-container">
                         <h3 className="post-list-item-text-title">

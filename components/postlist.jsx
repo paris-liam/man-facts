@@ -23,7 +23,7 @@ export default function PostList({ title, posts, showMore }) {
                 {posts.map((post) => {
                     return (
                         <li key={post.title} className='post-list-item'>
-                            <Link href={(post.isAuthor ? '/authors/' : '/posts/') + formatLink(post.title)}><a>
+                            <Link href={(post.isAuthor ? '/authors/' : '/posts/') + formatLink(post.title, !post.isAuthor)}><a>
                                 {post.image ? <img className='post-list-item-image' src={post.image.url} /> : ''}
                                 <div className="post-list-item-text-container" style={{ marginLeft: !post.image && post.isAuthor ? '0' : 'auto' }}>
                                     <p className="post-list-item-text-body">

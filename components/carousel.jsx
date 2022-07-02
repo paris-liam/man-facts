@@ -85,7 +85,7 @@ export default function Carousel({ posts }) {
       <div className='carousel__track-container'>
         <ul className='carousel__track'>
           {posts.map((post, index) => (
-            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title)}><li ref={ref => slideRefs.current.push(ref)} style={{ left: slidePositions[index] + 'px', zIndex: index+1 }} className={`carousel__slide`}>
+            <Link key={`carousel-slide-${index}`} href={'posts/' + formatLink(post.title, true)}><li ref={ref => slideRefs.current.push(ref)} style={{ left: slidePositions[index] + 'px', zIndex: index+1 }} className={`carousel__slide`}>
               <img src={post.image.url} />
               <h2 className='carousel-slide-title'>{post.title}</h2>
               <div className='carousel-slide-overlay'></div>
